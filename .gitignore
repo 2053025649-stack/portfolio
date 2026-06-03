@@ -1,0 +1,7 @@
+node_modules/
+.next/
+out/
+public/portfolio-images/
+public/content/
+.DS_Store
+*.tsbuildinfo

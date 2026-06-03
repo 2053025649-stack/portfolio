@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5">
+<title>付浩洋 — 广告导演 / 直播导播</title>
+<meta name="description" content="付浩洋，广告导演、直播导播，专注于品牌视觉叙事与创意表达。与华为、DJI、宝利来、泡泡玛特等品牌合作。">
+<style>
+/* === RESET === */
+*,*::before,*::after{margin:0;padding:0;border:0;font:inherit;font-size:100%;box-sizing:border-box}
+li,ul{list-style:none}a{color:inherit;text-decoration:none}a,img,picture,svg,video{display:block}img,svg,video{width:100%;height:auto}svg{height:100%}
+
+/* === FONTS === */
+@font-face{font-family:"TNY";src:local("Georgia"),local("Noto Serif SC"),local("Times New Roman");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"jws";src:local("Arial Bold"),local("PingFang SC"),local("Helvetica Neue Bold");font-weight:700;font-style:normal;font-display:swap}
+
+/* === BASE === */
+html{-webkit-text-size-adjust:none;-webkit-font-smoothing:antialiased;cursor:default;-webkit-tap-highlight-color:transparent}
+body{font-family:"jws",sans-serif;font-weight:700;font-feature-settings:"liga" off;background:#141414;color:#bac4b8;overflow:hidden;height:100%}
+
+#app{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;user-select:none;-webkit-user-select:none}
+
+/* === LOAD COUNTER === */
+#load{position:absolute;z-index:9998;top:35px;left:38px;font-family:"TNY",Georgia,serif;font-size:50px;line-height:44px;letter-spacing:-.01em;color:#bac4b8}
+#load>span{float:left;overflow:hidden}
+#load>span:not(:first-child){margin-left:-10px}
+#load span span{padding-right:10px;display:block;transform:translate3d(-110%,0,0);transition:transform 600ms cubic-bezier(.25,.46,.45,.94)}
+
+/* === LINE === */
+.line{position:absolute;left:0;width:100%;bottom:8px;height:2px;pointer-events:none}
+.line div{position:absolute;top:0;height:100%;will-change:transform,background}
+.line div:first-child{transition:background 500ms cubic-bezier(.25,.46,.45,.94);width:50%}
+.line div:last-child{transition:background 500ms cubic-bezier(.25,.46,.45,.94);width:50%;left:50%}
+
+/* === NAV === */
+#nav{pointer-events:none}
+#n0{position:absolute;top:35px;left:38px;font-family:"TNY",Georgia,serif;font-size:50px;line-height:44px;letter-spacing:-.02em;color:#bac4b8;opacity:0}
+#n0>span{float:left;overflow:hidden}
+#n0 span span{display:block;transform:translate3d(-110%,0,0);transition:transform 600ms cubic-bezier(.25,.46,.45,.94)}
+.n1{position:absolute;top:40px;right:50px;overflow:hidden}
+.n1 a{pointer-events:all;display:block;font-size:12px;line-height:14px;color:#bac4b8;opacity:.4;transition:color 500ms cubic-bezier(.25,.46,.45,.94),opacity 500ms;transform:translate3d(0,101%,0)}
+.n1 a.active,.n1 a:hover{opacity:1}
+#n2{position:absolute;bottom:48px;left:50px;font-size:10px;line-height:10px;overflow:hidden;pointer-events:none}
+#n2>div{overflow:hidden}
+.n2-link{display:table;color:#bac4b8;transform:translate3d(0,101%,0);transition:color 500ms cubic-bezier(.25,.46,.45,.94);position:relative;pointer-events:all}
+.n2-link::after{content:"↗";position:absolute;top:0;right:0;padding-left:5px;transition:opacity 200ms cubic-bezier(.25,.46,.45,.94);transform:translateX(100%);opacity:0}
+.n2-link:hover::after{transition:opacity 400ms cubic-bezier(.25,.46,.45,.94);opacity:1}
+#n3{position:absolute;bottom:47px;right:50px;text-align:right;font-size:12px;line-height:14px}
+#n3>div{overflow:hidden;padding-left:20px}
+.n3-link{display:inline-block;color:#bac4b8;transition:color 500ms cubic-bezier(.25,.46,.45,.94);transform:translate3d(0,101%,0);pointer-events:all;position:relative}
+.n3-link::after{content:"↗";position:absolute;top:0;left:0;padding-right:5px;transition:opacity 200ms cubic-bezier(.25,.46,.45,.94);transform:translateX(-100%);opacity:0}
+.n3-link:hover::after{transition:opacity 400ms cubic-bezier(.25,.46,.45,.94);opacity:1}
+
+/* === ABOUT VIEW === */
+#a{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity 500ms cubic-bezier(.25,.46,.45,.94)}
+#a.visible{opacity:1}
+#a-left{position:absolute;left:50px;top:49px;width:calc(100% - 100px)}
+#a-nif-w{margin-left:1px;font-family:"TNY",Georgia,serif}
+.a-nif::after{content:"";display:block;clear:both}
+.a-nif>span{float:left;overflow:hidden}
+.a-nif>span>span{float:left;transform:translate3d(-101%,0,0);transition:transform 600ms cubic-bezier(.25,.46,.45,.94)}
+#a-p{padding-top:7.5vh;font-size:11px;line-height:16px;color:#bac4b8;opacity:.7}
+#a-p>span{display:block;overflow:hidden}
+#a-p span span{display:block;transform:translate3d(0,110%,0);transition:transform 500ms cubic-bezier(.25,.46,.45,.94)}
+#a-social{position:absolute;left:50px;bottom:calc(6.66667vh + 50px);font-size:12px;line-height:14px}
+#a-social div{overflow:hidden}
+#a-social a{display:table;color:#bac4b8;opacity:.6;transition:color 500ms cubic-bezier(.25,.46,.45,.94);pointer-events:all;transform:translate3d(0,110%,0);position:relative}
+#a-social a::after{content:"↗";position:absolute;top:0;right:0;padding-left:5px;transition:opacity 200ms cubic-bezier(.25,.46,.45,.94);transform:translateX(100%);opacity:0}
+#a-social a:hover{opacity:1}
+#a-social a:hover::after{transition:opacity 400ms cubic-bezier(.25,.46,.45,.94);opacity:1}
+#a-list{position:absolute;bottom:calc(10.83333vh + 50px);right:0;font-size:11px;line-height:13px}
+#a-list>ul>li{float:left;position:relative;height:385px;overflow:hidden}
+#a-list>ul>li>ul>li{padding-left:12px;overflow:hidden}
+#a-list>ul>li>ul>li>div{transform:translate3d(0,110%,0);transition:transform 500ms cubic-bezier(.25,.46,.45,.94);color:#bac4b8;opacity:.6}
+#a-design{position:absolute;bottom:48px;right:0;font-size:10px;line-height:10px;overflow:hidden}
+#a-design a{display:table;pointer-events:all;color:#bac4b8;opacity:.5;transform:translate3d(0,101%,0);transition:opacity 500ms;position:relative}
+#a-design a:hover{opacity:.8}
+#a-design a::after{content:"↗";position:absolute;top:0;right:0;padding-left:5px;transition:opacity 200ms cubic-bezier(.25,.46,.45,.94);transform:translateX(100%);opacity:0}
+#a-design a:hover::after{transition:opacity 400ms cubic-bezier(.25,.46,.45,.94);opacity:1}
+#a-rights{position:absolute;bottom:48px;right:50px;font-size:10px;line-height:10px;text-align:right}
+#a-rights>div{overflow:hidden}
+#a-rights div div{display:inline-block;color:#bac4b8;opacity:.4;transform:translate3d(0,101%,0);transition:transform 500ms cubic-bezier(.25,.46,.45,.94)}
+
+/* === ENTRY INDICATOR === */
+.e{position:absolute;bottom:49px;left:50%;transform:translateX(-50%);pointer-events:none;opacity:0;transition:opacity 500ms}
+.e.visible{opacity:1}
+.e-t{overflow:hidden;font-size:8px;line-height:10px;color:#bac4b8;opacity:.5;text-align:center}
+.e-t>div{transform:translate3d(0,-101%,0);transition:transform 500ms cubic-bezier(.25,.46,.45,.94)}
+.e-l{position:relative;margin:9px auto 0;width:3px;pointer-events:none;overflow:hidden}
+.e-l div{position:absolute;left:0;width:1px;height:100%;border-right:1px solid rgba(186,196,184,.3);transform:translate3d(0,-110%,0);transition:transform 500ms cubic-bezier(.25,.46,.45,.94)}
+.e-s{margin:13px auto 0;width:14px;height:14px;overflow:hidden;pointer-events:none}
+.e-s div{width:14px;height:14px;border:1px solid rgba(186,196,184,.3);transform:translate3d(0,-110%,0);transition:transform 500ms cubic-bezier(.25,.46,.45,.94)}
+
+/* === HOME VIEW === */
+#h{position:absolute;z-index:1;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity 500ms cubic-bezier(.25,.46,.45,.94)}
+#h.visible{opacity:1;pointer-events:all}
+#h-img-w{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);overflow:hidden}
+#h-img-w>div{position:relative;width:100%;height:100%}
+.h-img{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity 800ms cubic-bezier(.39,.575,.565,1)}
+.h-img.show{opacity:1}
+#h-info{position:absolute;bottom:70px;left:50px;right:50px;pointer-events:none}
+#h-info-t{overflow:hidden;margin-bottom:2px}
+#h-info-t>div{font-family:"TNY",Georgia,serif;font-size:clamp(1rem, 2.5vw, 1.6rem);color:#bac4b8;transform:translate3d(0,110%,0);transition:transform 500ms cubic-bezier(.25,.46,.45,.94);letter-spacing:-.01em}
+#h-info-m{overflow:hidden}
+#h-info-m>div{font-size:10px;color:#bac4b8;opacity:.5;transform:translate3d(0,110%,0);transition:transform 500ms cubic-bezier(.25,.46,.45,.94)}
+#h-counter{position:absolute;bottom:47px;right:50px;font-size:10px;line-height:10px;color:#bac4b8;opacity:.5;pointer-events:none}
+#h-counter>div{overflow:hidden}
+#h-counter>div>div{transform:translate3d(0,-101%,0);transition:transform 500ms cubic-bezier(.25,.46,.45,.94)}
+#h-arrow-l,#h-arrow-r{position:absolute;top:50%;transform:translateY(-50%);pointer-events:all;cursor:pointer;opacity:.4;transition:opacity 300ms;z-index:2}
+#h-arrow-l:hover,#h-arrow-r:hover{opacity:.8}
+#h-arrow-l{left:50px}#h-arrow-r{right:50px}
+#h-arrow-l svg,#h-arrow-r svg{width:24px;height:24px;stroke:#bac4b8;stroke-width:1;fill:none}
+#h-dots{position:absolute;bottom:48px;left:50%;transform:translateX(-50%);display:flex;gap:6px;pointer-events:none}
+.h-dot{width:4px;height:4px;border-radius:50%;background:rgba(186,196,184,.25);transition:background 400ms}
+.h-dot.active{background:rgba(186,196,184,.7)}
+
+/* === WORK VIEW === */
+#w{position:absolute;z-index:2;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity 500ms cubic-bezier(.25,.46,.45,.94)}
+#w.visible{opacity:1}
+#w-l{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+#w-l>div{display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.w-l-bg{position:absolute;top:0;left:0;width:100%;height:100%;background:#1a1a1a}
+.w-l-img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1000ms cubic-bezier(.39,.575,.565,1)}
+.w-l-img.show{opacity:1}
+#w-s-w{position:absolute;top:50%;right:50px;height:65vh;transform:translate(0,-50%)}
+.w-s{position:relative;pointer-events:all;cursor:pointer;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.w-s:not(:first-child){margin-top:1.67vh}
+.w-s-bg{position:absolute;top:0;left:0;width:100%;height:100%;background:#2a2a2a}
+.w-s-img{position:absolute;top:-.1px;left:-.1px;width:calc(100% + .2px);height:calc(100% + .2px);object-fit:cover;opacity:0;pointer-events:none;transition:opacity 1000ms cubic-bezier(.39,.575,.565,1)}
+.w-s-img.show{opacity:1}
+#w-a{position:absolute;top:calc(17.5vh - 6px);right:44px;border:1.34px solid rgba(186,196,184,.4);box-sizing:border-box;opacity:0;transition:opacity 500ms,top 400ms cubic-bezier(.25,.46,.45,.94)}
+#w-a.visible{opacity:1}
+.w-s-label{position:absolute;left:-60px;top:50%;transform:translateY(-50%);font-size:8px;color:#bac4b8;opacity:0;white-space:nowrap;transition:opacity 300ms}
+.w-s:hover .w-s-label{opacity:.5}
+
+/* === PROJECT OVERLAY === */
+#p{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity 500ms cubic-bezier(.25,.46,.45,.94);overflow-y:auto}
+#p.visible{opacity:1;pointer-events:all}
+#p-close{position:fixed;top:35px;right:50px;z-index:10;font-size:12px;color:#bac4b8;opacity:.6;cursor:pointer;pointer-events:all;transition:opacity 500ms}
+#p-close:hover{opacity:1}
+#p-inner{position:absolute;top:49px;left:50%;transform:translateX(-50%);pointer-events:none;width:100%}
+#p-l{width:3px;pointer-events:none;margin:11px auto 0;overflow:hidden}
+#p-l div{position:absolute;left:0;width:1px;height:100%;border-right:1px solid rgba(186,196,184,.4);transform:translate3d(0,-110%,0);transition:transform 500ms cubic-bezier(.25,.46,.45,.94)}
+#p-s{margin:auto;width:14px;height:14px;text-align:center;overflow:hidden;pointer-events:none}
+#p-s div{width:14px;height:14px;border:1px solid rgba(186,196,184,.4);transform:translate3d(0,-110%,0);transition:transform 500ms cubic-bezier(.25,.46,.45,.94)}
+#p-t{margin-top:4px;overflow:hidden;pointer-events:none}
+#p-t>div{transform:translate3d(0,-101%,0);transition:transform 500ms cubic-bezier(.25,.46,.45,.94);font-size:10px;color:#bac4b8;opacity:.5;text-align:center}
+.t{position:absolute;left:38px;width:calc(100vw - 76px);font-family:"TNY",Georgia,serif;letter-spacing:-.024em;pointer-events:none}
+.t>div{position:absolute;top:0;left:0;overflow:hidden}
+.t div div{transform:translate3d(-101%,0,0);color:#bac4b8}
+/* Video player in overlay */
+#p-video-w{margin:0 auto;display:none;overflow:hidden;position:relative}
+#p-video-w.show{display:block}
+#p-video-w>div{position:relative;padding-bottom:56.25%;height:0}
+#p-video-w iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+/* Stills strip */
+#p-stills-w{display:none;overflow-x:auto;padding:0 38px;margin-top:3vh}
+#p-stills-w.show{display:flex;gap:8px}
+#p-stills-w img{flex-shrink:0;height:12vh;width:auto;object-fit:cover;border-radius:2px;cursor:pointer;transition:opacity 300ms;opacity:.6}
+#p-stills-w img:hover{opacity:1}
+/* Description */
+#p-desc-w{display:none;text-align:center;padding:0 38px;margin-top:2.5vh}
+#p-desc-w.show{display:block}
+#p-desc{font-size:10px;line-height:15px;color:#bac4b8;opacity:.55}
+/* Multi-video tabs */
+#p-multi-w{display:none;margin:0 auto;text-align:center}
+#p-multi-w.show{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.p-multi-tab{font-size:10px;padding:4px 12px;border:1px solid rgba(186,196,184,.25);border-radius:12px;color:#bac4b8;opacity:.5;cursor:pointer;transition:opacity 300ms,background 300ms;pointer-events:all}
+.p-multi-tab.active,.p-multi-tab:hover{opacity:1;background:rgba(186,196,184,.1)}
+#v{position:absolute;bottom:44px;left:50%;transform:translateX(-50%);text-align:center;pointer-events:none}
+#v>div{overflow:hidden}
+#v>div>a{transform:translate3d(0,-101%,0);transition:transform 500ms cubic-bezier(.25,.46,.45,.94),color 500ms;color:#bac4b8;opacity:.5;font-size:10px;display:inline-block;position:relative;pointer-events:all;cursor:pointer}
+#v>div>a::after{content:"↗";position:absolute;top:0;right:0;padding-left:5px;transition:opacity 200ms cubic-bezier(.25,.46,.45,.94);transform:translateX(100%);opacity:0}
+#v>div>a:hover{opacity:1}
+#v>div>a:hover::after{transition:opacity 400ms cubic-bezier(.25,.46,.45,.94);opacity:1}
+.pgn{position:fixed;left:0;width:100%;height:100%;overflow:hidden;pointer-events:all;top:0}
+.pgn>div{position:absolute;top:0;width:100%;height:100%;overflow:hidden;cursor:pointer}
+.pgn-left{left:0;width:50%}.pgn-right{left:50%;width:50%}
+.i-l{position:absolute;bottom:47px;left:50%;font-size:10px;line-height:12px;letter-spacing:.02em;transform:translateX(-100%);pointer-events:none}
+.i-l>div{display:flex;flex-wrap:wrap;overflow:hidden}
+.i-l>div>div{transform:translate3d(0,-101%,0);transition:transform 500ms cubic-bezier(.25,.46,.45,.94);color:#bac4b8;opacity:.5}
+.i-r{position:absolute;bottom:48px;left:calc(50% + 140px);font-size:10px;line-height:10px;letter-spacing:.02em;pointer-events:none}
+.i-r>div{overflow:hidden}
+.i-r>div>div{transform:translate3d(0,-101%,0);transition:transform 500ms cubic-bezier(.25,.46,.45,.94);color:#bac4b8;opacity:.5}
+
+/* === RESPONSIVE === */
+@media(min-width:1800px){#a-list>ul>li{width:260px}#a-design{width:1028px}}
+@media(max-width:1800px){#a-list>ul>li{width:230px}}
+@media(max-width:1550px){#a-list>ul>li:last-child{display:none}}
+@media(max-width:1250px){#a-list>ul>li:nth-child(3){display:none}#a-design{display:none}}
+@media(max-width:1050px){#a-list>ul>li{display:none}}
+@media(min-aspect-ratio:1660/1200){
+  .t{height:28.125vh;line-height:28.125vh;font-size:37.5vh}
+  .tt{top:calc(50% - 33.125vh)}.tb{top:calc(50% - 5vh)}
+  .t>div{margin-left:-3.33333vh}.t div div{padding-left:3.33333vh;padding-right:3.33333vh}
+  #w-l{width:96.2963vh;height:54.16667vh}
+  #h-img-w{width:96.2963vh;height:54.16667vh}
+  #p-video-w{width:86.6667vh}
+  .w-s{height:5vh;width:8.88889vh}
+  #w-a{width:calc(8.88889vh + 12px);height:calc(5vh + 12px)}
+}
+@media(max-aspect-ratio:1660/1200){
+  .t{height:19.87952vw;line-height:19.87952vw;font-size:26.50602vw}
+  .tt{top:calc(50% - 23.49398vw)}.tb{top:calc(50% - 3.61446vw)}
+  .t>div{margin-left:-2.40964vw}.t div div{padding-left:2.40964vw;padding-right:2.40964vw}
+  #w-l{width:69.61178vw;height:39.15663vw}
+  #h-img-w{width:69.61178vw;height:39.15663vw}
+  #p-video-w{width:62.6506vw}
+  .w-s{height:5vh;width:8.88889vh}
+  #w-a{width:calc(8.88889vh + 12px);height:calc(5vh + 12px)}
+}
+@media(min-height:850px){
+  #a-nif-w{font-size:calc(17.5vh + 100px);line-height:calc(13.0725vh + 74.7px)}
+  .a-nif>span{margin-left:calc(-.42vh + -2.4px)}
+}
+@media(min-height:750px) and (max-height:850px){
+  #a-nif-w{font-size:calc(15vh + 100px);line-height:calc(11.205vh + 74.7px)}
+  .a-nif>span{margin-left:calc(-.36vh + -2.4px)}
+}
+@media(max-height:750px){
+  #a-nif-w{font-size:calc(13.33333vh + 100px);line-height:calc(9.96vh + 74.7px)}
+  .a-nif>span{margin-left:calc(-.32vh + -2.4px)}
+}
+@media(max-height:700px){#a-p{display:none}}
+@media(max-height:850px){#a-social div:nth-child(4),#a-social div:nth-child(5){display:none}}
+@media(max-height:600px){#a-list{display:none}}
+@media(min-height:760px){.e-l{height:34px}}
+@media(min-height:700px) and (max-height:760px){.e-l{height:3.4vh}}
+@media(min-height:660px) and (max-height:700px){.e-l{height:2.5vh}}
+@media(max-height:660px){.e-l{height:2vh}}
+@media(max-width:1350px){.i-l,.i-r{display:none}}
+@media(min-height:870px){#p-l{margin:11px auto 0;height:16px}}
+@media(min-height:810px) and (max-height:870px){#p-l{margin:11px auto 0;height:1.2vh}}
+@media(max-height:810px){#p-l{height:0}}
+@media(max-width:1150px){#w-a,#w-s-w{display:none}}
+@media(max-width:700px){
+  #n2,.pgn{display:none}
+  #a-left{left:25px}#a-social{left:25px}#a-rights{right:25px}#n0{left:25px}.n1{right:25px}#n3{right:25px}#load{left:25px}
+  #p-close{right:25px}.t{left:25px;width:calc(100vw - 50px)}
+  #h-info{left:25px;right:25px;bottom:60px}#h-arrow-l{left:25px}#h-arrow-r{right:25px}#h-counter{right:25px}#h-dots{bottom:42px}
+  #p-stills-w{padding:0 25px}#p-desc-w{padding:0 25px}
+}
+.hide-scroll{-ms-overflow-style:none;scrollbar-width:none}
+.hide-scroll::-webkit-scrollbar{display:none}
+</style>
+</head>
+<body>
+<main id="app">
+
+  <div id="load">
+    <span><span>0</span></span><span><span>0</span></span><span><span>1</span></span>
+  </div>
+
+  <div class="line">
+    <div style="background:#bac4b8;width:0%"></div>
+    <div style="background:rgba(186,196,184,.1);left:0%;width:100%"></div>
+  </div>
+
+  <nav id="nav">
+    <div id="n0">
+      <span><span>F</span></span><span><span>u</span></span><span><span>&nbsp;</span></span><span><span>H</span></span><span><span>a</span></span><span><span>o</span></span><span><span>y</span></span><span><span>a</span></span><span><span>n</span></span><span><span>g</span></span>
+    </div>
+    <div class="n1">
+      <a href="#" data-view="home" class="active">Index</a>
+      <a href="#" data-view="about" style="margin-top:4px">About</a>
+      <a href="#" data-view="work" style="margin-top:4px">Work</a>
+    </div>
+    <div id="n2"><div><a href="#" class="n2-link" data-view="work">精选作品</a></div></div>
+    <div id="n3"><div><a href="#" class="n3-link" data-view="about">关于 &amp; 联系</a></div></div>
+  </nav>
+
+  <div id="a">
+    <div id="a-left">
+      <div id="a-nif-w"><div class="a-nif"><span><span>付</span></span><span><span>浩</span></span><span><span>洋</span></span></div></div>
+      <div id="a-p">
+        <span><span>广告导演 / 直播导播，专注于品牌视觉叙事与创意表达。</span></span>
+        <span><span>以独立导演身份与品牌、代理商及创作者合作，</span></span>
+        <span><span>作品涵盖 TVC、直播导播、短片与数字内容，</span></span>
+        <span><span>在国内外广告节中屡获殊荣。</span></span>
+      </div>
+    </div>
+    <div id="a-social">
+      <div><a href="#" target="_blank">Bilibili</a></div><div><a href="#" target="_blank">Email</a></div><div><a href="#" target="_blank">Instagram</a></div><div><a href="#" target="_blank">新片场</a></div><div><a href="#" target="_blank">小红书</a></div>
+    </div>
+    <div id="a-list"><ul>
+      <li><ul><li><div>合作品牌</div></li><li><div>&nbsp;</div></li><li><div>华为终端</div></li><li><div>DJI 大疆创新</div></li><li><div>宝利来中国</div></li><li><div>泡泡玛特</div></li><li><div>赤尾</div></li><li><div>保利浙江</div></li><li><div>邮储银行</div></li><li><div>爷爷不泡茶</div></li><li><div>奥美加龙舌兰</div></li><li><div>央视网 / 人民网</div></li><li><div>浙江省卫健委</div></li><li><div>Amflow</div></li><li><div>科大讯飞</div></li><li><div>可画</div></li></ul></li>
+      <li><ul><li><div>代表作品</div></li><li><div>&nbsp;</div></li><li><div>赤尾 品牌 TVC</div></li><li><div>宝利来《爱在显影等待时》</div></li><li><div>泡泡玛特《致天马行空的我们》</div></li><li><div>鸿蒙智行官方直播间</div></li><li><div>保利浙江 和字系广告</div></li><li><div>邮储银行《我和童年有个约会》</div></li><li><div>互动微电影《入室》</div></li><li><div>短片《转啊转》</div></li><li><div>艺术装置《黑的海》</div></li><li><div>《离枝》剧本杀短片</div></li><li><div>DJI 官方教学视频</div></li><li><div>Amflow PL 产品教学</div></li><li><div>《越千年看亚运》动画宣传</div></li><li><div>浙江宫颈癌预防公益广告</div></li><li><div>可画《人人都是设计大师》</div></li></ul></li>
+      <li><ul><li><div>所获荣誉</div></li><li><div>&nbsp;</div></li><li><div>广告金雀奖 入围提名</div></li><li><div>大广赛 国家级一等奖×2</div></li><li><div>釜山 ICAC 数字视频铜奖</div></li><li><div>中国好创意大赛 二等奖</div></li><li><div>中国好创意大赛 三等奖×2</div></li><li><div>未来设计师 视频设计三等奖</div></li><li><div>全国大学生短视频大赛 三等奖</div></li><li><div>大学生广告艺术节 优秀奖</div></li><li><div>亚洲国际青年电影节 入围</div></li><li><div>上海国际大学生广告节 入围</div></li><li><div>浙江宫颈癌预防大赛 一等奖</div></li></ul></li>
+      <li><ul><li><div>服务内容</div></li><li><div>&nbsp;</div></li><li><div>导演</div></li><li><div>摄影</div></li><li><div>剪辑</div></li><li><div>调色</div></li><li><div>直播导播</div></li><li><div>灯光</div></li><li><div>动画合成</div></li><li><div>同期录音</div></li><li><div>执行导演</div></li><li><div>执行美术</div></li></ul></li>
+    </ul></div>
+    <div id="a-design"><a href="#" target="_blank">Design &mdash; Fu Haoyang</a></div>
+    <div id="a-rights"><div><div>&copy; 2025 付浩洋</div></div></div>
+  </div>
+
+  <div class="e" id="entry-indicator">
+    <div class="e-t"><div>Enter</div></div><div class="e-l"><div></div></div><div class="e-s"><div></div></div>
+  </div>
+
+  <!-- HOME VIEW -->
+  <div id="h">
+    <div id="h-img-w"><div id="h-img-container"></div></div>
+    <div id="h-arrow-l"><svg viewBox="0 0 24 24"><polyline points="15 4 7 12 15 20"/></svg></div>
+    <div id="h-arrow-r"><svg viewBox="0 0 24 24"><polyline points="9 4 17 12 9 20"/></svg></div>
+    <div id="h-info"><div id="h-info-t"><div></div></div><div id="h-info-m"><div></div></div></div>
+    <div id="h-dots"></div>
+    <div id="h-counter"><div><div>01 / 24</div></div></div>
+  </div>
+
+  <!-- WORK VIEW -->
+  <div id="w">
+    <div id="w-l"><div><div class="w-l-bg" id="w-bg"></div><img class="w-l-img" id="w-img" src="" alt=""></div></div>
+    <div id="w-s-w" class="hide-scroll" style="overflow-y:auto"></div>
+    <div id="w-a"></div>
+  </div>
+
+  <!-- PROJECT OVERLAY -->
+  <div id="p">
+    <div id="p-close">Close</div>
+    <div id="p-inner">
+      <div id="p-l"><div></div></div><div id="p-s"><div></div></div><div id="p-t"><div>Project</div></div>
+    </div>
+    <div class="t tt"><div><div id="p-title-top">Project</div></div></div>
+    <div class="t tb"><div><div id="p-title-bottom">Title</div></div></div>
+
+    <!-- Multi-video tabs -->
+    <div id="p-multi-w" style="margin-top:1.5vh"></div>
+
+    <!-- Video player -->
+    <div id="p-video-w" style="margin-top:2vh">
+      <div><iframe id="p-video-iframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+    </div>
+
+    <!-- Stills -->
+    <div id="p-stills-w" class="hide-scroll"></div>
+
+    <!-- Description -->
+    <div id="p-desc-w"><p id="p-desc"></p></div>
+
+    <div id="v"><div><a id="p-detail-link" href="#" target="_blank">查看完整作品详情 &rarr;</a></div></div>
+
+    <div class="pgn"><div class="pgn-left" id="pgn-prev"></div><div class="pgn-right" id="pgn-next"></div></div>
+
+    <div class="i-l" id="i-left"><div></div></div>
+    <div class="i-r" id="i-right"><div><div>01 / 24</div></div></div>
+  </div>
+
+</main>
+
+<script>
+(function() {
+  'use strict';
+
+  var IMG = '/portfolio-images/';
+
+  var state = { view: 'home', projectOpen: false, projectIndex: 0, homeIndex: 0, animating: false, multiVideoIdx: 0 };
+
+  // === COMPLETE PROJECT DATA ===
+  var projects = [
+    { slug:'chiwei-ad', title:'赤尾｜感受爱侣每一寸肌肤', client:'赤尾', year:'2024', category:'TVC广告', role:'导演/摄影/剪辑/调色',
+      desc:'围绕"赤尾"极致超薄特性展开的品牌影像作品。以极具质感的摄影语言，将"薄"从产品参数转化为感官体验。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13166852&mid=rVo9wyn661W4l5PG',
+      stills:['still-01.jpg','still-02.jpg','still-03.jpg','still-05.jpg','still-06.jpg','still-07.jpg','still-08.jpg','still-09.jpg','still-10.jpg','still-11.jpg','still-12.jpg'],
+      color:'#1a1a2e', featured:true },
+    { slug:'huawei-live', title:'鸿蒙智行官方直播间', client:'华为终端', year:'2025', category:'直播导播', role:'直播技术支持/导播',
+      desc:'华为终端年度产品发布会直播。设计了8机位切换方案，直播时长3小时全程零失误，采用了实时AR特效与实景融合技术。',
+      xinpianchangUrl:'',
+      stills:['still-01.jpg','still-02.jpg'],
+      color:'#16213e', featured:true },
+    { slug:'polaroid-ad', title:'Polaroid｜爱在显影等待时', client:'宝利来中国', year:'2025', category:'TVC广告', role:'导演/剪辑/调色',
+      desc:'八支风格统一的广告围绕Polaroid品牌气质展开，将"等待显影"的过程转化为关于爱意与时间流动的情绪表达。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13383408&mid=qd9g4r5LlAZwv86Z',
+      stills:['still-01.jpg','still-02.jpg','still-03.jpg','still-04.jpg','still-05.jpg','still-06.jpg','still-07.jpg','still-08.jpg','still-09.jpg','still-10.jpg','still-11.jpg','still-12.jpg','still-13.jpg','still-14.jpg','still-15.jpg','still-16.jpg','still-17.jpg','still-18.jpg','still-19.jpg','still-20.jpg','still-21.jpg'],
+      color:'#0f3460', featured:true },
+    { slug:'dji-tutorials', title:'DJI｜官方教学视频', client:'DJI大疆创新', year:'2024', category:'产品教学', role:'导演/摄影/剪辑',
+      desc:'为DJI制作全系列产品官方教学视频，涵盖航拍无人机和手持摄影设备两大品类，发布于DJI官网供全球用户学习。',
+      xinpianchangUrl:'',
+      stills:[], color:'#1a1a2e', featured:true },
+    { slug:'amflow-pl-carbon', title:'Amflow PL｜产品教学视频', client:'Amflow', year:'2024', category:'产品教学', role:'剪辑',
+      desc:'为Amflow PL电动山地车制作官方产品教学视频，通过动态骑行镜头与产品细节展示相结合，呈现PL Carbon的性能与设计美学。',
+      xinpianchangUrl:'',
+      stills:[], color:'#16213e', featured:false },
+    { slug:'dji-ronin-story', title:'DJI PRO x SNAP Studio｜影像故事', client:'DJI大疆创新', year:'2024', category:'影像故事', role:'摄影',
+      desc:'音乐视频制作团队SNAP Studio在DJI PRO产品助力下，为多位音乐人创作出破圈的MV作品。DJI PRO特邀SNAP Studio聊聊创作故事。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13693307&mid=2MmN45kz9E17X0zL',
+      stills:[], color:'#0f3460', featured:true },
+    { slug:'poly-zhejiang-ad', title:'保利浙江｜和字系 系列广告', client:'保利浙江', year:'2024', category:'TVC广告', role:'导演/剪辑',
+      desc:'保利浙江「早C晚A」生活图鉴，呈现都市青年日与夜的双面生活。以轻松幽默的手法展现当代年轻人的生活方式。',
+      multiVideo:[
+        {label:'早C晚A生活图鉴',url:'https://player.xinpianchang.com/?aid=12907635&mid=enXV4BmobGzwBEmM'},
+        {label:'求婚大作战',url:'https://player.xinpianchang.com/?aid=12907350&mid=ro1V7Erz9zPwdXAM'}
+      ],
+      stills:['still-01.jpg','still-02.jpg','still-03.jpg','still-04.jpg','still-05.jpg','still-06.jpg','still-07.jpg','still-08.jpg','still-09.jpg','still-10.jpg','still-11.jpg','still-12.jpg'],
+      color:'#1a1a2e', featured:true },
+    { slug:'dji-first-youth', title:'DJI x FIRST青年训练营｜影像故事', client:'DJI大疆创新', year:'2024', category:'影像故事', role:'摄影',
+      desc:'DJI Pro为FIRST训练营中的年轻电影人提供摄影生态方案支持，助力"新生力量"实现创作自由。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13167309&from=UserProfile',
+      stills:[], color:'#16213e', featured:false },
+    { slug:'dji-fubo-story', title:'DJI x 傅博｜影像故事', client:'DJI大疆创新', year:'2024', category:'影像故事', role:'摄影/剪辑',
+      desc:'DJI PRO特邀广告导演、电影摄影师、三不五时SOMEWHILE主理人傅博，分享他与Ronin生态产品的拍摄故事。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13693206&mid=eRPn7qrNqa2wm39p',
+      stills:[], color:'#0f3460', featured:false },
+    { slug:'popmart-ad', title:'泡泡玛特｜致天马行空的我们', client:'泡泡玛特', year:'2023', category:'TVC广告', role:'导演/剪辑',
+      desc:'影片聚焦一位拥有丰富幻想力的Z世代青年，在平凡日常中为自己构建出介于现实与幻想之间的小型宇宙。像一封写给想象力的情书。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=12907288&mid=O5vZQV1WxD34DEMW',
+      stills:['still-01.jpg','still-02.jpg','still-03.jpg','still-04.jpg','still-05.jpg','still-06.jpg','still-07.jpg','still-08.jpg','still-09.jpg','still-10.jpg','still-11.jpg','still-12.jpg'],
+      color:'#1a1a2e', featured:true },
+    { slug:'dji-fiatlux-story', title:'DJI x FIATLUX｜影像故事', client:'DJI大疆创新', year:'2024', category:'影像故事', role:'摄影',
+      desc:'《Wondering of Ocean》是一部由FIATLUX工作室制作的潜水纪实影片。DJI PRO特邀导演朴达和摄影指导李子洋讲述拍摄幕后。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13693421&mid=E6WlQglr35R7gdJz',
+      stills:[], color:'#16213e', featured:false },
+    { slug:'dji-denglu-story', title:'DJI x 邓璐｜影像故事', client:'DJI大疆创新', year:'2024', category:'影像故事', role:'摄影/剪辑',
+      desc:'跟随摄影指导邓璐一起走进拍摄幕后，听她讲述与DJI PRO的创作故事。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13693432&mid=DA96Qevp0ex7j5N0',
+      stills:[], color:'#0f3460', featured:false },
+    { slug:'dji-xianli-story', title:'DJI PRO x 先力&全视角｜如影随行', client:'DJI大疆创新', year:'2024', category:'影像故事', role:'摄影/剪辑',
+      desc:'如影十年之际，DJI PRO特邀先力总经理贺阳、全视角总经理闫博伦，聊聊他们与如影的故事。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13693568&mid=3Yn57pMjpVWwdDAa',
+      stills:[], color:'#1a1a2e', featured:false },
+    { slug:'zhejiang-health-ad', title:'浙江省卫健委｜无烟杭州', client:'浙江省卫健委', year:'2024', category:'公益广告', role:'剪辑',
+      desc:'浙江省卫健委推出的城市公益宣传片。杭州持续推进"无烟城市"建设，因控烟成果获得WHO"世界无烟日奖"。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13694583&mid=36Jm4a10G1N4yjzB',
+      stills:[], color:'#16213e', featured:false },
+    { slug:'zihao-game-pv', title:'自豪！美女全攻略｜游戏PV', client:'游戏宣传', year:'2024', category:'游戏PV', role:'剪辑',
+      desc:'通过高密度的信息剪辑、夸张的角色魅力展示与强烈的二次元视觉风格，构建出关于"攻略""心动"与青春欲望的幻想空间。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13694585&mid=2MmN45k6nkO7X0zL',
+      stills:[], color:'#0f3460', featured:false },
+    { slug:'lizhi-script-ad', title:'离枝｜剧本杀短片', client:'剧本杀', year:'2023', category:'短片', role:'执行导演',
+      desc:'故事从奈河桥的亡魂等待开始，回溯六位少年在盛世大唐的相遇，卷入皇权、藩镇、宦官的漩涡。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13382722&mid=yOBl4z3rbo1QaMg0',
+      stills:['still-01.jpg','still-02.jpg','still-03.jpg','still-04.jpg','still-05.jpg','still-06.jpg','still-07.jpg','still-08.jpg','still-09.jpg','still-10.jpg','still-11.jpg','still-12.jpg','still-13.jpg'],
+      color:'#1a1a2e', featured:false },
+    { slug:'grandpa-tea-ad', title:'爷爷不泡茶｜大屏广告', client:'爷爷不泡茶', year:'2023', category:'TVC广告', role:'摄影/剪辑',
+      desc:'《爷爷不泡茶》大屏广告以城市青年为主角，将东方茶饮文化与当代年轻人的生活状态重新连接。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13694606&mid=GKL87NolPr0wojJz',
+      stills:['still-01.jpg','still-02.jpg','still-03.jpg','still-04.jpg','still-05.jpg'],
+      color:'#16213e', featured:false },
+    { slug:'cervical-cancer-ad', title:'公益广告｜浙江省宫颈癌预防', client:'浙江省卫健委', year:'2022', category:'公益广告', role:'导演/剪辑',
+      desc:'浙江省卫健委推出的女性健康公益广告。将"宫颈癌预防"这一严肃医学议题，转化为温柔而克制的情感表达。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13694611&mid=GmOEQG2398v418bn',
+      stills:[], color:'#0f3460', featured:false },
+    { slug:'olmeca-tequila-ad', title:'奥美加龙舌兰｜产品广告', client:'奥美加龙舌兰', year:'2023', category:'TVC广告', role:'灯光',
+      desc:'以极具质感的视觉语言重新诠释龙舌兰本身的感官魅力。镜头完全聚焦于产品本身。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13694612&mid=36Jm4a10GO64yjzB',
+      stills:['still-01.jpg','still-02.jpg','still-03.jpg','still-04.jpg','still-05.jpg','still-06.jpg'],
+      color:'#1a1a2e', featured:false },
+    { slug:'psbc-childhood-ad', title:'邮储银行｜我和童年有个约会', client:'邮储银行', year:'2023', category:'TVC广告', role:'导演/剪辑',
+      desc:'聚焦初入职场的年轻主播嘉嘉，在绩效压力与现实焦虑中，与"童年的自己"展开一场跨越时间的对话。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13694600&mid=jlyzw0zGZrkQB198',
+      stills:['still-01.jpg','still-02.jpg','still-03.jpg','still-04.jpg','still-05.jpg','still-06.jpg','still-07.jpg','still-08.jpg'],
+      color:'#16213e', featured:false },
+    { slug:'yue-qiannian-asiad-ad', title:'央视网x人民网｜越千年看亚运', client:'央视网/人民网/新华网', year:'2023', category:'动画宣传', role:'动画合成师',
+      desc:'以沙画动画形式呈现的亚运主题宣传片。以"跨越时间"为核心概念，将杭州历史与亚运精神融合。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13383338&mid=OpgP7kg2MRL76BL5',
+      stills:['still-01.jpg','still-02.jpg','still-03.jpg','still-04.jpg','still-05.jpg','still-06.jpg','still-07.jpg'],
+      color:'#0f3460', featured:false },
+    { slug:'rushi-other', title:'互动式悬疑微电影《入室》', client:'', year:'2025', category:'微电影', role:'执行导演',
+      desc:'步伐碾过积水，电话骤然响起。交错街巷如迷宫，独自上车的乘客叩响未知——旧门缓缓推开时，猎人与猎物的身份悄然调换。每个选择都藏着出口，命运的抉择交由你手中。',
+      xinpianchangUrl:'https://player.bilibili.com/player.html?isOutside=true&aid=114495556949904&bvid=BV1rs79z2EQL&cid=29929374247&p=1',
+      stills:[], color:'#1a1a2e', featured:false },
+    { slug:'zhuanazhuan-other', title:'短片《转啊转》', client:'', year:'2025', category:'短片', role:'执行导演',
+      desc:'以儿时的陀螺游戏为线索，讲述了少年小光与一位性格古怪的老人之间，从害怕、误解到成为朋友的温暖故事。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13694620&mid=0VAm7OolPEo7DRnW',
+      stills:[], color:'#16213e', featured:false },
+    { slug:'black-sea-other', title:'黑的海｜艺术装置概念阐述片', client:'', year:'2024', category:'艺术装置', role:'摄影/灯光/剪辑',
+      desc:'《黑的海》是一件围绕福岛核污水排海事件展开的沉浸式互动装置作品。以"海洋污染"与"人类责任"为核心命题，将数据、机械装置与视觉隐喻结合，构建出一个不断扩散、逐渐失控的黑色海洋。',
+      xinpianchangUrl:'https://player.xinpianchang.com/?aid=13694618&mid=yOBl4zLJKEj7aMg0',
+      stills:[], color:'#0f3460', featured:false }
+  ];
+
+  var $ = function(id) { return document.getElementById(id); };
+  var loadEl = $('load'), n0El = $('n0'), aboutEl = $('a'), entryEl = $('entry-indicator');
+  var homeEl = $('h'), workEl = $('w'), wImg = $('w-img'), wSW = $('w-s-w'), wA = $('w-a');
+  var projEl = $('p'), pTitleTop = $('p-title-top'), pTitleBottom = $('p-title-bottom');
+  var pClose = $('p-close'), pDetailLink = $('p-detail-link');
+  var pVideoW = $('p-video-w'), pVideoIframe = $('p-video-iframe');
+  var pStillsW = $('p-stills-w'), pDescW = $('p-desc-w'), pDesc = $('p-desc');
+  var pMultiW = $('p-multi-w');
+  var lineEl = document.querySelector('.line div:first-child');
+  var allNavLinks = document.querySelectorAll('[data-view]');
+  var hImgContainer = $('h-img-container'), hInfoT = document.querySelector('#h-info-t>div');
+  var hInfoM = document.querySelector('#h-info-m>div'), hCounter = document.querySelector('#h-counter>div>div');
+  var hDots = $('h-dots'), hArrowL = $('h-arrow-l'), hArrowR = $('h-arrow-r');
+
+  function splitTitle(t) {
+    var i = t.indexOf('｜'); if (i>0) return [t.slice(0,i), t.slice(i+1)];
+    i = t.indexOf('|'); if (i>0) return [t.slice(0,i), t.slice(i+1)];
+    i = t.indexOf('《'); if (i>0) return [t.slice(0,i), t.slice(i)];
+    return [t,''];
+  }
+
+  // === LOAD SEQUENCE ===
+  function initLoad() {
+    var spans = loadEl.querySelectorAll('span span');
+    for (var i=0; i<spans.length; i++) {
+      (function(el,d){ setTimeout(function(){ el.style.transform='translate3d(0,0,0)'; }, d); })(spans[i], 400+i*150);
+    }
+    setTimeout(function(){
+      entryEl.classList.add('visible');
+      var a=entryEl.querySelector('.e-t>div'), b=entryEl.querySelector('.e-l div'), c=entryEl.querySelector('.e-s div');
+      if(a) a.style.transform='translate3d(0,0,0)'; if(b) b.style.transform='translate3d(0,0,0)'; if(c) c.style.transform='translate3d(0,0,0)';
+    }, 1200);
+    setTimeout(function(){ goToView('about'); }, 2500);
+  }
+
+  // === VIEW NAVIGATION ===
+  function goToView(view) {
+    if (state.animating) return;
+    state.animating = true; state.view = view; state.projectOpen = false;
+    allNavLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('data-view')===view); });
+    aboutEl.classList.remove('visible'); homeEl.classList.remove('visible');
+    workEl.classList.remove('visible'); projEl.classList.remove('visible'); entryEl.classList.remove('visible');
+    resetViewTransforms();
+    if (view==='home') showHome();
+    else if (view==='about') showAbout();
+    else if (view==='work') showWork();
+    setTimeout(function(){ state.animating=false; }, 800);
+  }
+
+  function hideNavLinks() {
+    var a=document.querySelector('.n2-link'), b=document.querySelector('.n3-link');
+    if(a) a.style.transform='translate3d(0,101%,0)'; if(b) b.style.transform='translate3d(0,101%,0)';
+    document.querySelectorAll('.n1 a').forEach(function(x){ x.style.transform='translate3d(0,101%,0)'; });
+  }
+
+  function showNavLinks() {
+    var a=document.querySelector('.n2-link'), b=document.querySelector('.n3-link');
+    setTimeout(function(){
+      if(a){a.style.transform='translate3d(0,0,0)';a.style.transition='transform 600ms cubic-bezier(.25,.46,.45,.94)';}
+      if(b){b.style.transform='translate3d(0,0,0)';b.style.transition='transform 600ms cubic-bezier(.25,.46,.45,.94)';}
+      document.querySelectorAll('.n1 a').forEach(function(x,i){setTimeout(function(){
+        x.style.transform='translate3d(0,0,0)';x.style.transition='transform 600ms cubic-bezier(.25,.46,.45,.94)';
+      }, i*80);});
+    }, 400);
+  }
+
+  function resetViewTransforms() {
+    aboutEl.querySelectorAll('.a-nif>span>span').forEach(function(s){s.style.transform='translate3d(-101%,0,0)';s.style.transition='none';});
+    document.querySelectorAll('#a-p span span').forEach(function(s){s.style.transform='translate3d(0,110%,0)';s.style.transition='none';});
+    document.querySelectorAll('#a-social a').forEach(function(s){s.style.transform='translate3d(0,110%,0)';s.style.transition='none';});
+    document.querySelectorAll('#a-list ul>li>ul>li>div').forEach(function(s){s.style.transform='translate3d(0,110%,0)';s.style.transition='none';});
+    var d=document.querySelector('#a-design a'); if(d){d.style.transform='translate3d(0,101%,0)';d.style.transition='none';}
+    document.querySelectorAll('#a-rights div div').forEach(function(s){s.style.transform='translate3d(0,101%,0)';s.style.transition='none';});
+  }
+
+  // === HOME VIEW ===
+  function buildHomeSlider() {
+    hImgContainer.innerHTML=''; hDots.innerHTML='';
+    projects.forEach(function(proj,i){
+      var wrap=document.createElement('div');
+      wrap.className='h-img'; wrap.style.background=proj.color; wrap.setAttribute('data-index',i);
+      var img=document.createElement('img');
+      img.src=IMG+proj.slug+'/cover.jpg'; img.alt=proj.title; img.loading='lazy';
+      img.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover';
+      img.onerror=function(){ this.remove(); };
+      wrap.appendChild(img); hImgContainer.appendChild(wrap);
+      var dot=document.createElement('div'); dot.className='h-dot'; dot.setAttribute('data-index',i); hDots.appendChild(dot);
+    });
+  }
+
+  function showHome() {
+    loadEl.style.opacity='0'; n0El.style.opacity='1';
+    aboutEl.classList.remove('visible'); workEl.classList.remove('visible');
+    projEl.classList.remove('visible'); homeEl.classList.add('visible');
+    showNavLinks();
+    if (hImgContainer.children.length===0) buildHomeSlider();
+    updateHomeSlide();
+    if (lineEl) { lineEl.style.transition='width 1000ms cubic-bezier(.25,.46,.45,.94)'; lineEl.style.width='100%'; }
+  }
+
+  function updateHomeSlide() {
+    var idx=state.homeIndex, proj=projects[idx]; if(!proj) return;
+    hImgContainer.querySelectorAll('.h-img').forEach(function(img,i){ img.classList.toggle('show', i===idx); });
+    hDots.querySelectorAll('.h-dot').forEach(function(d,i){ d.classList.toggle('active', i===idx); });
+    if (hInfoT) { hInfoT.style.transform='translate3d(0,110%,0)'; hInfoT.style.transition='none'; hInfoT.textContent=proj.title;
+      setTimeout(function(){hInfoT.style.transform='translate3d(0,0,0)';hInfoT.style.transition='transform 500ms cubic-bezier(.25,.46,.45,.94)';},50); }
+    if (hInfoM) { hInfoM.style.transform='translate3d(0,110%,0)'; hInfoM.style.transition='none';
+      var m=[]; if(proj.category) m.push(proj.category); if(proj.client) m.push(proj.client); if(proj.year) m.push(proj.year);
+      hInfoM.textContent=m.join('  ·  ');
+      setTimeout(function(){hInfoM.style.transform='translate3d(0,0,0)';hInfoM.style.transition='transform 500ms cubic-bezier(.25,.46,.45,.94)';},100); }
+    if (hCounter) { hCounter.style.transform='translate3d(0,-101%,0)'; hCounter.style.transition='none';
+      hCounter.textContent=String(idx+1).padStart(2,'0')+' / '+String(projects.length).padStart(2,'0');
+      setTimeout(function(){hCounter.style.transform='translate3d(0,0,0)';hCounter.style.transition='transform 500ms cubic-bezier(.25,.46,.45,.94)';},150); }
+  }
+
+  function homeNext() { state.homeIndex=(state.homeIndex+1)%projects.length; updateHomeSlide(); }
+  function homePrev() { state.homeIndex=state.homeIndex<=0?projects.length-1:state.homeIndex-1; updateHomeSlide(); }
+
+  homeEl.addEventListener('click', function(e){
+    if (e.target===hArrowL||hArrowL.contains(e.target)){ homePrev(); return; }
+    if (e.target===hArrowR||hArrowR.contains(e.target)){ homeNext(); return; }
+    var w=window.innerWidth, x=e.clientX;
+    if (x<w*0.3) homePrev();
+    else if (x>w*0.7) homeNext();
+    else openProjectOverlay(state.homeIndex);
+  });
+  hArrowL.addEventListener('click',function(e){e.stopPropagation();homePrev();});
+  hArrowR.addEventListener('click',function(e){e.stopPropagation();homeNext();});
+
+  // === ABOUT VIEW ===
+  function showAbout() {
+    loadEl.style.opacity='0'; n0El.style.opacity='1'; aboutEl.classList.add('visible');
+    homeEl.classList.remove('visible'); workEl.classList.remove('visible'); projEl.classList.remove('visible');
+    showNavLinks();
+    setTimeout(function(){
+      document.querySelectorAll('.a-nif>span>span').forEach(function(s,i){setTimeout(function(){s.style.transform='translate3d(0,0,0)';s.style.transition='transform 700ms cubic-bezier(.25,.46,.45,.94)';},i*80);});
+      setTimeout(function(){document.querySelectorAll('#a-p span span').forEach(function(s,i){setTimeout(function(){s.style.transform='translate3d(0,0,0)';s.style.transition='transform 500ms cubic-bezier(.25,.46,.45,.94)';},i*120);});},300);
+      setTimeout(function(){document.querySelectorAll('#a-social a').forEach(function(s,i){setTimeout(function(){s.style.transform='translate3d(0,0,0)';s.style.transition='transform 500ms cubic-bezier(.25,.46,.45,.94)';},i*60);});},500);
+      setTimeout(function(){document.querySelectorAll('#a-list ul>li>ul>li>div').forEach(function(s,i){setTimeout(function(){s.style.transform='translate3d(0,0,0)';s.style.transition='transform 500ms cubic-bezier(.25,.46,.45,.94)';},i*35);});},700);
+      setTimeout(function(){var d=document.querySelector('#a-design a');if(d){d.style.transform='translate3d(0,0,0)';d.style.transition='transform 500ms cubic-bezier(.25,.46,.45,.94)';}},800);
+      setTimeout(function(){document.querySelectorAll('#a-rights div div').forEach(function(s){s.style.transform='translate3d(0,0,0)';s.style.transition='transform 500ms cubic-bezier(.25,.46,.45,.94)';});},900);
+    },200);
+    if(lineEl){lineEl.style.transition='width 1000ms cubic-bezier(.25,.46,.45,.94)';lineEl.style.width='100%';setTimeout(function(){lineEl.style.width='0%';setTimeout(function(){lineEl.style.transition='width 0ms';lineEl.style.width='100%';},1000);},1200);}
+  }
+
+  // === WORK VIEW ===
+  function buildWorkThumbnails() {
+    wSW.innerHTML='';
+    projects.forEach(function(proj,i){
+      var thumb=document.createElement('div'); thumb.className='w-s'; thumb.setAttribute('data-index',i);
+      thumb.innerHTML='<div class="w-s-bg"></div><img class="w-s-img" src="'+IMG+proj.slug+'/thumbnail.jpg" alt="" loading="lazy" data-index="'+i+'" style="background:'+proj.color+'" onerror="this.style.display=\'none\'"><span class="w-s-label">'+proj.title+'</span>';
+      thumb.addEventListener('click',function(){ selectProject(i); });
+      wSW.appendChild(thumb);
+    });
+    setTimeout(function(){ var img=wSW.querySelector('.w-s-img'); if(img) img.classList.add('show'); }, 300);
+  }
+
+  function showWork() {
+    loadEl.style.opacity='0'; n0El.style.opacity='1';
+    aboutEl.classList.remove('visible'); homeEl.classList.remove('visible');
+    workEl.classList.add('visible'); projEl.classList.remove('visible');
+    showNavLinks();
+    if (wSW.children.length===0) buildWorkThumbnails();
+    state.projectIndex=state.homeIndex;
+    setTimeout(function(){
+      wSW.querySelectorAll('.w-s-img').forEach(function(img,i){setTimeout(function(){img.classList.add('show');},i*60);});
+      wA.classList.add('visible'); updateWorkActive();
+    }, 400);
+    if(lineEl){lineEl.style.transition='width 1000ms cubic-bezier(.25,.46,.45,.94)';lineEl.style.width='100%';}
+  }
+
+  function selectProject(index) { state.projectIndex=index; state.homeIndex=index; updateWorkActive(); openProjectOverlay(index); }
+
+  function updateWorkActive() {
+    var idx=state.projectIndex, thumbs=wSW.querySelectorAll('.w-s');
+    var th=thumbs[0]?thumbs[0].offsetHeight:34, mt=0;
+    if(thumbs[1]){mt=parseFloat(getComputedStyle(thumbs[1]).marginTop||0);}
+    if(isNaN(mt)) mt=0;
+    wA.style.top='calc(17.5vh - 6px + '+(idx*(th+mt))+'px)';
+  }
+
+  // === PROJECT OVERLAY ===
+  function openProjectOverlay(index) {
+    var proj=projects[index]; if(!proj) return;
+    state.projectOpen=true; state.projectIndex=index; state.homeIndex=index;
+    state.multiVideoIdx=0;
+    projEl.classList.add('visible'); projEl.scrollTop=0;
+
+    var parts=splitTitle(proj.title);
+    pTitleTop.textContent=parts[0]; pTitleBottom.textContent=parts[1];
+    pDetailLink.href='/portfolio/'+proj.slug;
+
+    // Multi-video tabs
+    pMultiW.innerHTML=''; pMultiW.classList.remove('show');
+    if (proj.multiVideo && proj.multiVideo.length>1) {
+      pMultiW.classList.add('show');
+      proj.multiVideo.forEach(function(v,i){
+        var tab=document.createElement('span'); tab.className='p-multi-tab'; tab.textContent=v.label;
+        if (i===0) tab.classList.add('active');
+        tab.addEventListener('click',function(e){e.stopPropagation();
+          state.multiVideoIdx=i;
+          pMultiW.querySelectorAll('.p-multi-tab').forEach(function(t,j){t.classList.toggle('active',j===i);});
+          pVideoIframe.src=proj.multiVideo[i].url;
+          pVideoW.classList.add('show');
+        });
+        pMultiW.appendChild(tab);
+      });
+    }
+
+    // Video
+    pVideoW.classList.remove('show'); pVideoIframe.src='';
+    var videoUrl='';
+    if (proj.multiVideo && proj.multiVideo.length>0) videoUrl=proj.multiVideo[0].url;
+    else if (proj.xinpianchangUrl) videoUrl=proj.xinpianchangUrl;
+    if (videoUrl) { pVideoIframe.src=videoUrl; pVideoW.classList.add('show'); }
+
+    // Stills
+    pStillsW.innerHTML=''; pStillsW.classList.remove('show');
+    if (proj.stills && proj.stills.length>0) {
+      pStillsW.classList.add('show');
+      proj.stills.forEach(function(f){
+        var img=document.createElement('img');
+        img.src=IMG+proj.slug+'/'+f; img.alt=''; img.loading='lazy';
+        img.onerror=function(){this.style.display='none';};
+        pStillsW.appendChild(img);
+      });
+    }
+
+    // Description
+    pDescW.classList.remove('show');
+    if (proj.desc) { pDesc.textContent=proj.desc; pDescW.classList.add('show'); }
+
+    setTimeout(function(){
+      var ttDivs=document.querySelector('.tt div div');
+      if(ttDivs){ttDivs.style.transform='translate3d(0,0,0)';ttDivs.style.transition='transform 600ms cubic-bezier(.25,.46,.45,.94)';}
+      var tbDivs=document.querySelector('.tb div div');
+      if(tbDivs){tbDivs.style.transform='translate3d(0,0,0)';tbDivs.style.transition='transform 600ms cubic-bezier(.25,.46,.45,.94)';tbDivs.style.opacity=parts[1]?'1':'0';}
+      var plDiv=document.querySelector('#p-l div'); if(plDiv){plDiv.style.transform='translate3d(0,0,0)';plDiv.style.transition='transform 500ms cubic-bezier(.25,.46,.45,.94)';}
+      var psDiv=document.querySelector('#p-s div'); if(psDiv){psDiv.style.transform='translate3d(0,0,0)';psDiv.style.transition='transform 500ms cubic-bezier(.25,.46,.45,.94)';}
+      var ptDiv=document.querySelector('#p-t>div'); if(ptDiv){ptDiv.style.transform='translate3d(0,0,0)';ptDiv.style.transition='transform 500ms cubic-bezier(.25,.46,.45,.94)';}
+      var vA=document.querySelector('#v>div>a'); if(vA){vA.style.transform='translate3d(0,0,0)';vA.style.transition='transform 500ms cubic-bezier(.25,.46,.45,.94)';}
+
+      var ilDiv=document.querySelector('#i-left>div');
+      if(ilDiv){var ip=[]; if(proj.category) ip.push(proj.category); if(proj.client) ip.push(proj.client); if(proj.year) ip.push(proj.year); if(proj.role) ip.push(proj.role);
+        ilDiv.innerHTML='<div style="transform:translate3d(0,-101%,0);transition:transform 500ms cubic-bezier(.25,.46,.45,.94);color:#bac4b8;opacity:.5">'+ip.join('  ·  ')+'</div>';
+        setTimeout(function(){var inner=ilDiv.querySelector('div'); if(inner) inner.style.transform='translate3d(0,0,0)';},50);}
+
+      var irDiv=document.querySelector('.i-r>div>div');
+      if(irDiv){irDiv.textContent=String(index+1).padStart(2,'0')+' / '+String(projects.length).padStart(2,'0');irDiv.style.transform='translate3d(0,0,0)';irDiv.style.transition='transform 500ms cubic-bezier(.25,.46,.45,.94)';}
+    }, 100);
+  }
+
+  function closeProject() {
+    state.projectOpen=false; projEl.classList.remove('visible');
+    var ttDivs=document.querySelector('.tt div div'); if(ttDivs){ttDivs.style.transform='translate3d(-101%,0,0)';ttDivs.style.transition='none';}
+    var tbDivs=document.querySelector('.tb div div'); if(tbDivs){tbDivs.style.transform='translate3d(-101%,0,0)';tbDivs.style.transition='none';tbDivs.style.opacity='1';}
+    var plDiv=document.querySelector('#p-l div'); if(plDiv){plDiv.style.transform='translate3d(0,-110%,0)';plDiv.style.transition='none';}
+    var psDiv=document.querySelector('#p-s div'); if(psDiv){psDiv.style.transform='translate3d(0,-110%,0)';psDiv.style.transition='none';}
+    var ptDiv=document.querySelector('#p-t>div'); if(ptDiv){ptDiv.style.transform='translate3d(0,-101%,0)';ptDiv.style.transition='none';}
+    var vA=document.querySelector('#v>div>a'); if(vA){vA.style.transform='translate3d(0,-101%,0)';vA.style.transition='none';}
+    var irDiv=document.querySelector('.i-r>div>div'); if(irDiv){irDiv.style.transform='translate3d(0,-101%,0)';irDiv.style.transition='none';}
+    document.querySelectorAll('#i-left>div>div').forEach(function(d){d.style.transform='translate3d(0,-101%,0)';d.style.transition='none';});
+  }
+
+  function overlayPrev() { if(!state.projectOpen) return; var ni=state.projectIndex<=0?projects.length-1:state.projectIndex-1; state.homeIndex=ni; closeProject(); setTimeout(function(){openProjectOverlay(ni);},300); }
+  function overlayNext() { if(!state.projectOpen) return; var ni=state.projectIndex>=projects.length-1?0:state.projectIndex+1; state.homeIndex=ni; closeProject(); setTimeout(function(){openProjectOverlay(ni);},300); }
+
+  // === EVENT LISTENERS ===
+  allNavLinks.forEach(function(a){a.addEventListener('click',function(e){e.preventDefault(); var v=this.getAttribute('data-view'); if(v) goToView(v);});});
+  entryEl.addEventListener('click',function(){goToView('about');});
+  pClose.addEventListener('click',function(){closeProject();});
+  $('pgn-prev').addEventListener('click',overlayPrev);
+  $('pgn-next').addEventListener('click',overlayNext);
+
+  document.addEventListener('keydown',function(e){
+    if (state.projectOpen) { if(e.key==='Escape') closeProject(); if(e.key==='ArrowLeft') overlayPrev(); if(e.key==='ArrowRight') overlayNext(); }
+    else if (state.view==='home') { if(e.key==='ArrowLeft') homePrev(); if(e.key==='ArrowRight') homeNext(); if(e.key==='Enter') openProjectOverlay(state.homeIndex); }
+    else { if(e.key==='ArrowRight'||e.key==='ArrowDown'){ if(state.view==='about') goToView('work'); } }
+  });
+
+  var tsX=0;
+  homeEl.addEventListener('touchstart',function(e){tsX=e.touches[0].clientX;});
+  homeEl.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-tsX; if(Math.abs(d)>40){if(d<0) homeNext(); else homePrev();}});
+  projEl.addEventListener('touchstart',function(e){tsX=e.touches[0].clientX;});
+  projEl.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-tsX; if(Math.abs(d)>50){if(d<0) overlayNext(); else overlayPrev();}});
+
+  // === INIT ===
+  buildHomeSlider(); buildWorkThumbnails(); initLoad();
+})();
+</script>
+</body>
+</html>

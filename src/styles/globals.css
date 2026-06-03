@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-y: scroll;
+  }
+  body { @apply bg-dark-800 text-gray-200; }
+  ::selection { @apply bg-accent/30 text-white; }
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply bg-dark-500 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-dark-400; }
+}
+
+@layer components {
+  .prose-invert { @apply text-gray-300 leading-relaxed; }
+  .prose-invert h2 { @apply text-2xl font-display text-white mt-12 mb-4; }
+  .prose-invert h3 { @apply text-xl font-display text-white mt-8 mb-3; }
+  .prose-invert p { @apply mb-5 leading-loose; }
+  .prose-invert ul { @apply list-disc pl-6 mb-5 space-y-2; }
+  .prose-invert li { @apply leading-loose; }
+  .prose-invert strong { @apply text-white font-semibold; }
+  .prose-invert a { @apply text-accent hover:text-accent-warm underline underline-offset-4 decoration-accent/30 hover:decoration-accent transition-colors; }
+}
+
+@keyframes scroll-filmstrip {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+}

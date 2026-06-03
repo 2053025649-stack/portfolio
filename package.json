@@ -1,0 +1,37 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "predev": "node scripts/copy-content.mjs",
+    "build": "next build",
+    "prebuild": "node scripts/copy-content.mjs",
+    "copy-images": "node scripts/copy-content.mjs",
+    "new-project": "node scripts/new-project.mjs",
+    "deploy": "npm run build"
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
+    "@studio-freight/lenis": "^1.0.42",
+    "framer-motion": "^11.0.0",
+    "gray-matter": "^4.0.3",
+    "gsap": "^3.15.0",
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "remark": "^15.0.0",
+    "remark-html": "^16.0.0",
+    "split-type": "^0.3.4",
+    "three": "^0.184.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.3.0",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.4.0"
+  }
+}
