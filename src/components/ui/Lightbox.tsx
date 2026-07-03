@@ -2,6 +2,7 @@
 
 import { useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useBodyScrollLock, useEscapeKey } from '@/lib/hooks'
 
 interface LightboxProps {
   images: string[]
@@ -13,29 +14,27 @@ interface LightboxProps {
 export default function Lightbox({ images, currentIndex, onClose, onNavigate }: LightboxProps) {
   const isOpen = currentIndex !== null
 
+  useBodyScrollLock(isOpen)
+  useEscapeKey(onClose, isOpen)
+
   const goTo = useCallback(
     (dir: number) => {
       if (currentIndex === null) return
       const next = currentIndex + dir
       if (next >= 0 && next < images.length) onNavigate(next)
     },
-    [currentIndex, images.length, onNavigate]
+    [currentIndex, images.length, onNavigate],
   )
 
   useEffect(() => {
     if (!isOpen) return
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
       if (e.key === 'ArrowLeft') goTo(-1)
       if (e.key === 'ArrowRight') goTo(1)
     }
     window.addEventListener('keydown', handleKey)
-    document.body.style.overflow = 'hidden'
-    return () => {
-      window.removeEventListener('keydown', handleKey)
-      document.body.style.overflow = ''
-    }
-  }, [isOpen, onClose, goTo])
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [isOpen, goTo])
 
   return (
     <AnimatePresence>
@@ -47,11 +46,15 @@ export default function Lightbox({ images, currentIndex, onClose, onNavigate }: 
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
           onClick={onClose}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`图片 ${currentIndex! + 1} / ${images.length}`}
         >
           {/* Close button */}
           <button
             onClick={onClose}
             className="absolute top-4 right-4 md:top-6 md:right-6 text-white/60 hover:text-white transition-colors text-sm tracking-widest uppercase z-10 px-3 py-2"
+            aria-label="关闭灯箱"
           >
             关闭
           </button>

@@ -5,22 +5,26 @@ module.exports = {
     extend: {
       colors: {
         dark: {
-          900: '#080808',
-          800: '#0f0f0f',
-          700: '#1a1a1a',
-          600: '#262626',
-          500: '#333333',
-          400: '#404040',
+          950: '#050508',  // deepest — slight warm-blue tint, never pure black
+          900: '#0a0a0e',  // near-black with warmth
+          800: '#111115',  // body bg — tinted warm-neutral
+          700: '#1a1a20',  // card / surface
+          600: '#24242c',  // elevated surface
+          500: '#33333b',  // border / subtle
+          400: '#44444e',  // muted interactive
         },
         accent: {
-          DEFAULT: '#d4a574',
-          warm: '#c9976b',
-          cool: '#a8947a',
+          DEFAULT: '#d4a574',   // warm brass — the brand anchor
+          warm:    '#c9976b',   // warmer variant
+          cool:    '#a8947a',   // cooler / muted variant
+          glow:    'rgba(212,165,116,0.18)', // subtle tint overlay
         },
-        sage: {
-          DEFAULT: '#ffffff',
-          light: '#ffffff',
-          muted: 'rgba(255,255,255,0.65)',
+        // Renamed from 'sage' — use for text on dark backgrounds
+        surface: {
+          DEFAULT: '#f0eee8',           // body text — slightly warm off-white
+          light:    '#faf9f6',          // headings
+          muted:    'rgba(240,238,232,0.65)', // secondary text
+          faint:    'rgba(240,238,232,0.35)', // tertiary / placeholder
         },
       },
       fontFamily: {
@@ -35,13 +39,30 @@ module.exports = {
         'scroll': 'scroll 30s linear infinite',
       },
       keyframes: {
-        fadeUp: { '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
-        scaleIn: { '0%': { opacity: '0', transform: 'scale(0.95)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
-        reveal: { '0%': { opacity: '0', transform: 'translateY(60px) scale(0.97)' }, '100%': { opacity: '1', transform: 'translateY(0) scale(1)' } },
-        scroll: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
+        fadeUp: {
+          '0%': { opacity: '0', transform: 'translateY(40px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        scaleIn: {
+          '0%': { opacity: '0', transform: 'scale(0.95)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        reveal: {
+          '0%': { opacity: '0', transform: 'translateY(60px) scale(0.97)' },
+          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+        },
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
       },
-      screens: { 'xs': '480px' },
+      screens: {
+        xs: '480px',
+      },
     },
   },
   plugins: [],

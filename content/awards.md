@@ -2,7 +2,7 @@
 title: "获奖情况"
 ---
 
-<style>.awards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem 4rem}.awards-grid>div{white-space:nowrap}@media(max-width:768px){.awards-grid{grid-template-columns:1fr;gap:1.25rem}.awards-grid>div{white-space:normal}}</style>
+<style>.awards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5rem 3rem}.awards-grid>div{white-space:nowrap}@media(max-width:768px){.awards-grid{grid-template-columns:1fr;gap:1.25rem}.awards-grid>div{white-space:normal}}</style>
 <div class="awards-grid">
 
 <div>

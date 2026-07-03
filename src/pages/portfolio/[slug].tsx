@@ -72,8 +72,7 @@ export default function PortfolioPage({ project, prev, next }: PortfolioPageProp
           </motion.div>
           {project.stills.length > 0 && (
             <motion.div className="pb-10 md:pb-14" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-50px' }} transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}>
-              <p className="text-sage-muted text-xs tracking-[0.2em] uppercase mb-6">Stills</p>
-              <h3 className="text-xl md:text-2xl font-display text-sage-light mb-6 tracking-wide">静帧</h3>
+              <h3 className="text-2xl md:text-3xl font-display text-surface-light mb-6 tracking-wide">静帧</h3>
               <StillFilmstrip stills={project.stills} imageBase={project.imageBase} stillRatio={project.stillRatio} onImageClick={(i) => setLightboxIndex(i)} />
             </motion.div>
           )}

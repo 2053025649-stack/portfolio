@@ -44,7 +44,7 @@ function VideoPlayer({ url }: { url: string }) {
             </svg>
           </div>
         </div>
-        <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-sage-muted group-hover:text-sage-light text-sm tracking-wider transition-colors duration-300">
+        <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-surface-muted group-hover:text-surface-light text-sm tracking-wider transition-colors duration-300">
           点击播放视频
         </p>
       </motion.button>
@@ -85,8 +85,7 @@ export default function VideoSection({ xinpianchangUrl, multiVideo, externalUrl,
   if (!hasVideo && externalUrl) {
     return (
       <section className="py-10 md:py-14 border-t border-white/[0.06]">
-        <p className="text-accent text-xs tracking-[0.2em] uppercase mb-6">Watch</p>
-        <h3 className="text-xl md:text-2xl font-display text-sage-light mb-6 tracking-wide">观看成片</h3>
+        <h3 className="text-2xl md:text-3xl font-display text-surface-light mb-6 tracking-wide">观看成片</h3>
         <motion.a
           href={externalUrl}
           target="_blank"
@@ -102,7 +101,7 @@ export default function VideoSection({ xinpianchangUrl, multiVideo, externalUrl,
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
               </svg>
             </div>
-            <span className="text-sage-light/80 group-hover:text-sage-light text-sm md:text-base tracking-wider transition-colors duration-300">
+            <span className="text-surface-light/80 group-hover:text-surface-light text-sm md:text-base tracking-wider transition-colors duration-300">
               {externalLabel || '在外部网站观看'}
             </span>
           </div>
@@ -115,11 +114,10 @@ export default function VideoSection({ xinpianchangUrl, multiVideo, externalUrl,
   if (!hasVideo && !externalUrl) {
     return (
       <section className="py-10 md:py-14 border-t border-white/[0.06]">
-        <p className="text-accent text-xs tracking-[0.2em] uppercase mb-6">Watch</p>
-        <h3 className="text-xl md:text-2xl font-display text-sage-light mb-6 tracking-wide">观看成片</h3>
+        <h3 className="text-2xl md:text-3xl font-display text-surface-light mb-6 tracking-wide">观看成片</h3>
         <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-dark-700 flex items-center justify-center">
           <div className="absolute inset-0 bg-dark-900" />
-          <span className="relative z-10 text-sage-muted/30 text-sm tracking-wider">视频即将上线</span>
+          <span className="relative z-10 text-surface-muted/30 text-sm tracking-wider">视频即将上线</span>
         </div>
       </section>
     )
@@ -128,7 +126,7 @@ export default function VideoSection({ xinpianchangUrl, multiVideo, externalUrl,
   return (
     <section className="py-10 md:py-14 border-t border-white/[0.06]">
       <p className="text-accent text-xs tracking-[0.2em] uppercase mb-6">Watch</p>
-      <h3 className="text-xl md:text-2xl font-display text-sage-light mb-6 tracking-wide">观看成片</h3>
+      <h3 className="text-xl md:text-2xl font-display text-surface-light mb-6 tracking-wide">观看成片</h3>
 
       {/* Tab bar — only show with multiple videos */}
       {allVideos.length > 1 && (
@@ -139,8 +137,8 @@ export default function VideoSection({ xinpianchangUrl, multiVideo, externalUrl,
               onClick={() => setActiveIndex(i)}
               className={`px-4 py-2 text-sm tracking-wider rounded-full transition-colors duration-300 ${
                 i === activeIndex
-                  ? 'bg-white/10 text-sage-light'
-                  : 'text-sage-muted hover:text-sage'
+                  ? 'bg-white/10 text-surface-light'
+                  : 'text-surface-muted hover:text-sage'
               }`}
             >
               {v.label}

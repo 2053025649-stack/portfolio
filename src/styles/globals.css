@@ -9,30 +9,104 @@
     -moz-osx-font-smoothing: grayscale;
     overflow-y: scroll;
   }
-  body { @apply bg-dark-800 text-gray-200; }
-  ::selection { @apply bg-accent/30 text-white; }
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
-  ::-webkit-scrollbar-track { @apply bg-transparent; }
-  ::-webkit-scrollbar-thumb { @apply bg-dark-500 rounded-full; }
-  ::-webkit-scrollbar-thumb:hover { @apply bg-dark-400; }
+
+  body {
+    @apply bg-dark-800 text-surface;
+  }
+
+  ::selection {
+    @apply bg-accent/30 text-white;
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-dark-500 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-dark-400;
+  }
+
+  /* ── Focus ring ── */
+  :focus-visible {
+    outline: 2px solid theme('colors.accent.DEFAULT');
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 @layer components {
-  .prose-invert { @apply text-gray-300 leading-relaxed; }
-  .prose-invert h2 { @apply text-2xl font-display text-white mt-12 mb-4; }
-  .prose-invert h3 { @apply text-xl font-display text-white mt-8 mb-3; }
-  .prose-invert p { @apply mb-5 leading-loose; }
-  .prose-invert ul { @apply list-disc pl-6 mb-5 space-y-2; }
-  .prose-invert li { @apply leading-loose; }
-  .prose-invert strong { @apply text-white font-semibold; }
-  .prose-invert a { @apply text-accent hover:text-accent-warm underline underline-offset-4 decoration-accent/30 hover:decoration-accent transition-colors; }
+  .prose-invert {
+    @apply text-surface leading-relaxed;
+  }
+  .prose-invert h2 {
+    @apply text-2xl font-display text-white mt-12 mb-4;
+    text-wrap: balance;
+  }
+  .prose-invert h3 {
+    @apply text-xl font-display text-white mt-8 mb-3;
+    text-wrap: balance;
+  }
+  .prose-invert p {
+    @apply mb-5 leading-loose;
+  }
+  .prose-invert ul {
+    @apply list-disc pl-6 mb-5 space-y-2;
+  }
+  .prose-invert li {
+    @apply leading-loose;
+  }
+  .prose-invert strong {
+    @apply text-white font-semibold;
+  }
+  .prose-invert a {
+    @apply text-accent hover:text-accent-warm underline underline-offset-4 decoration-accent/30 hover:decoration-accent transition-colors;
+  }
+
+  /* ── Skip link ── */
+  .skip-link {
+    @apply fixed top-0 left-0 z-[100] px-4 py-3 bg-accent text-dark-900 text-sm font-medium rounded-br-lg;
+    transform: translateY(-100%);
+    transition: transform 0.2s ease-out;
+  }
+  .skip-link:focus {
+    transform: translateY(0);
+  }
 }
 
+/* ── Filmstrip scroll ── */
 @keyframes scroll-filmstrip {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @layer utilities {
-  .text-balance { text-wrap: balance; }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
 }

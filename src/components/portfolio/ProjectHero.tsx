@@ -3,14 +3,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { PortfolioItem } from '@/lib/types'
-
-const CATEGORY_LABEL: Record<string, string> = {
-  ad: '广告作品',
-  live: '直播作品',
-  tutorial: 'Inhouse作品',
-  story: 'Inhouse作品',
-  inhouse: 'Inhouse作品',
-}
+import { CATEGORY_LABEL } from '@/lib/constants'
 
 interface ProjectHeroProps {
   project: PortfolioItem
@@ -73,7 +66,7 @@ export default function ProjectHero({ project }: ProjectHeroProps) {
             </motion.span>
 
             <motion.h1
-              className="text-3xl md:text-5xl lg:text-[3.5rem] font-display text-sage-light leading-none whitespace-nowrap"
+              className="text-3xl md:text-5xl lg:text-[3.5rem] font-display text-surface-light leading-none"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
@@ -92,7 +85,7 @@ export default function ProjectHero({ project }: ProjectHeroProps) {
               </motion.p>
             )}
             <motion.p
-              className="mt-1.5 text-xs md:text-sm text-sage-muted tracking-wide"
+              className="mt-1.5 text-xs md:text-sm text-surface-muted tracking-wide"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.5 }}
@@ -103,13 +96,13 @@ export default function ProjectHero({ project }: ProjectHeroProps) {
             {/* Description text */}
             {project.contentHtml && (
               <motion.div
-                className="mt-8 md:mt-10 text-sm md:text-base text-sage-muted leading-relaxed"
+                className="mt-8 md:mt-10 text-sm md:text-base text-surface-muted leading-relaxed"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
               >
                 <div
-                  className="space-y-3 [&_h2]:text-base [&_h2]:md:text-lg [&_h2]:font-display [&_h2]:text-sage-light [&_h2]:mt-0 [&_h2]:mb-1 [&_h3]:text-sm [&_h3]:md:text-base [&_h3]:text-sage-light/80 [&_h3]:mt-0 [&_h3]:mb-1 [&_p]:text-sage-muted [&_p]:leading-relaxed [&_p]:text-sm [&_p]:md:text-base "
+                  className="space-y-3 [&_h2]:text-base [&_h2]:md:text-lg [&_h2]:font-display [&_h2]:text-surface-light [&_h2]:mt-0 [&_h2]:mb-1 [&_h3]:text-sm [&_h3]:md:text-base [&_h3]:text-surface-light/80 [&_h3]:mt-0 [&_h3]:mb-1 [&_p]:text-surface-muted [&_p]:leading-relaxed [&_p]:text-sm [&_p]:md:text-base "
                   dangerouslySetInnerHTML={{ __html: project.contentHtml }}
                 />
               </motion.div>

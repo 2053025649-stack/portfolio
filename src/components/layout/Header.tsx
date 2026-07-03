@@ -3,16 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { motion, AnimatePresence } from 'framer-motion'
 import MobileMenu from './MobileMenu'
-
-const NAV_ITEMS = [
-  { href: '/', label: '首页' },
-  { href: '/?category=featured', label: '精选' },
-  { href: '/?category=aigc', label: 'AIGC' },
-  { href: '/?category=ad', label: '广告' },
-  { href: '/?category=live', label: '直播' },
-  { href: '/?category=inhouse', label: 'Inhouse作品' },
-  { href: '/?category=other', label: '其他' },
-]
+import { NAV_ITEMS } from '@/lib/constants'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -24,11 +15,6 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
-  }, [isOpen])
 
   return (
     <>
@@ -49,7 +35,7 @@ export default function Header() {
               const isActive = router.pathname === item.href.split('?')[0] && (!item.href.includes('category') || router.asPath === item.href)
               return (
                 <Link key={item.href} href={item.href}
-                  className={`relative px-4 py-2 text-sm tracking-widest transition-colors duration-300 ${isActive ? 'text-white' : 'text-gray-400 hover:text-white'}`}
+                  className={`relative px-4 py-2 text-sm tracking-widest transition-colors duration-300 ${isActive ? 'text-white' : 'text-surface-muted hover:text-white'}`}
                 >
                   {item.label}
                   {isActive && <motion.span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-4 h-[1.5px] bg-accent rounded-full" layoutId="nav-indicator" transition={{ type: 'spring', stiffness: 350, damping: 30 }} />}

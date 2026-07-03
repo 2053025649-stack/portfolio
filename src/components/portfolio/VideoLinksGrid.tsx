@@ -13,12 +13,11 @@ export default function VideoLinksGrid({ groups, imageBase }: VideoLinksGridProp
 
   return (
     <section className="py-10 md:py-14 border-t border-white/[0.06]">
-      <p className="text-accent text-xs tracking-[0.2em] uppercase mb-6">Works</p>
-      <h3 className="text-xl md:text-2xl font-display text-sage-light mb-8 tracking-wide">作品列表</h3>
+      <h3 className="text-2xl md:text-3xl font-display text-surface-light mb-8 tracking-wide">作品列表</h3>
 
       {groups.map((group) => (
         <div key={group.category} className="mb-10">
-          <h4 className="text-sm text-sage-muted tracking-wider mb-5 font-medium">
+          <h4 className="text-sm text-surface-muted tracking-wider mb-5 font-medium">
             {group.category}
           </h4>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
@@ -53,7 +52,7 @@ export default function VideoLinksGrid({ groups, imageBase }: VideoLinksGridProp
 
                 {/* Bottom label */}
                 <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-gradient-to-t from-black/80 to-transparent">
-                  <span className="text-xs md:text-sm text-sage-light/90 tracking-wide">
+                  <span className="text-xs md:text-sm text-surface-light/90 tracking-wide">
                     {link.label}
                   </span>
                 </div>

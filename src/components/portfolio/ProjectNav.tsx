@@ -22,8 +22,8 @@ export default function ProjectNav({ prev, next }: ProjectNavProps) {
               whileHover={{ x: -4 }}
               transition={{ duration: 0.3 }}
             >
-              <span className="text-xs tracking-[0.15em] uppercase text-sage-muted/70">← 上一个</span>
-              <p className="mt-2 text-sm md:text-base text-sage group-hover:text-sage-light transition-colors duration-300">
+              <span className="text-xs tracking-[0.15em] uppercase text-surface-muted/70">← 上一个</span>
+              <p className="mt-2 text-sm md:text-base text-surface group-hover:text-surface-light transition-colors duration-300">
                 {prev.title}
               </p>
             </motion.div>
@@ -39,8 +39,8 @@ export default function ProjectNav({ prev, next }: ProjectNavProps) {
               whileHover={{ x: 4 }}
               transition={{ duration: 0.3 }}
             >
-              <span className="text-xs tracking-[0.15em] uppercase text-sage-muted/70">下一个 →</span>
-              <p className="mt-2 text-sm md:text-base text-sage group-hover:text-sage-light transition-colors duration-300">
+              <span className="text-xs tracking-[0.15em] uppercase text-surface-muted/70">下一个 →</span>
+              <p className="mt-2 text-sm md:text-base text-surface group-hover:text-surface-light transition-colors duration-300">
                 {next.title}
               </p>
             </motion.div>
