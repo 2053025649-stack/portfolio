@@ -9,7 +9,7 @@ interface Brand {
 
 const INHOUSE_BRANDS: Brand[] = [
   { name: '华为', file: 'huawei.png' },
-  { name: '大疆创新', file: 'dji.svg' },
+  { name: '大疆创新', file: 'dji.png' },
 ]
 
 const PARTNER_BRANDS: Brand[] = [

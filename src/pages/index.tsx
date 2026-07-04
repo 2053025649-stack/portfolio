@@ -120,7 +120,7 @@ export default function Home({ projects, config, awards }: HomeProps) {
                             <img src="/brands/huawei.png" alt="华为" className="w-full h-auto object-contain" />
                           </div>
                           <div className="w-36 flex items-center justify-center">
-                            <img src="/brands/dji.svg" alt="大疆创新" className="w-full h-auto object-contain" />
+                            <img src="/brands/dji.png" alt="大疆创新" className="w-full h-auto object-contain" />
                           </div>
                         </div>
                       </div>
