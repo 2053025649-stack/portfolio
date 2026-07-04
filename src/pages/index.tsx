@@ -115,24 +115,20 @@ export default function Home({ projects, config, awards }: HomeProps) {
                       {/* Inhouse — large, prominent */}
                       <div>
                         <span className="text-[11px] tracking-[0.25em] uppercase text-accent/70 mb-5 block">Inhouse</span>
-                        <div className="flex gap-6 items-center">
-                          <div className="bg-white/[0.05] rounded-2xl px-6 py-4 flex items-center justify-center ring-1 ring-white/[0.06]">
-                            <img src="/brands/huawei.png" alt="华为" className="h-10 w-auto object-contain" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }} />
-                          </div>
-                          <div className="bg-white/[0.05] rounded-2xl px-6 py-4 flex items-center justify-center ring-1 ring-white/[0.06]">
-                            <img src="/brands/dji.svg" alt="大疆创新" className="h-10 w-auto object-contain" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }} />
-                          </div>
+                        <div className="flex gap-10 items-center">
+                          <img src="/brands/huawei.png" alt="华为" className="h-12 w-auto object-contain" />
+                          <img src="/brands/dji.svg" alt="大疆创新" className="h-12 w-auto object-contain" />
                         </div>
                       </div>
 
                       {/* Partners — grouped with rhythm */}
                       <div>
                         <span className="text-[11px] tracking-[0.25em] uppercase text-surface-faint/60 mb-4 block">Partners</span>
-                        <div className="flex flex-wrap gap-3">
+                        <div className="flex flex-wrap gap-x-7 gap-y-4 opacity-65">
                           {[
-                            { file: 'polaroid.jpeg', name: '宝利来' },
+                            { file: 'polaroid.png', name: '宝利来' },
                             { file: 'zhejiang-health.svg', name: '浙江省卫健委' },
-                            { file: 'hznu.jpg', name: '杭州师范大学' },
+                            { file: 'hznu.png', name: '杭州师范大学' },
                             { file: 'chiwei.png', name: '赤尾' },
                             { file: 'psbc.png', name: '邮政储蓄银行' },
                             { file: 'grandpa-tea.png', name: '爷爷不泡茶' },
@@ -142,11 +138,9 @@ export default function Home({ projects, config, awards }: HomeProps) {
                             { file: 'xinhua.png', name: '新华网' },
                             { file: 'iflytek.png', name: '科大讯飞' },
                             { file: 'asiad.png', name: '杭州亚运会' },
-                            { file: 'canva.svg', name: '可画' },
+                            { file: 'canva.png', name: '可画' },
                           ].map((b) => (
-                            <div key={b.file} className="bg-white/[0.04] rounded-lg px-3 py-2 flex items-center justify-center ring-1 ring-white/[0.04]">
-                              <img src={`/brands/${b.file}`} alt={b.name} className="h-5 lg:h-6 w-auto object-contain opacity-70" style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.1))' }} />
-                            </div>
+                            <img key={b.file} src={`/brands/${b.file}`} alt={b.name} className="h-6 lg:h-7 w-auto object-contain" />
                           ))}
                         </div>
                       </div>

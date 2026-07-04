@@ -13,9 +13,9 @@ const INHOUSE_BRANDS: Brand[] = [
 ]
 
 const PARTNER_BRANDS: Brand[] = [
-  { name: '宝利来', file: 'polaroid.jpeg' },
+  { name: '宝利来', file: 'polaroid.png' },
   { name: '浙江省卫健委', file: 'zhejiang-health.svg' },
-  { name: '杭州师范大学', file: 'hznu.jpg' },
+  { name: '杭州师范大学', file: 'hznu.png' },
   { name: '赤尾', file: 'chiwei.png' },
   { name: '邮政储蓄银行', file: 'psbc.png' },
   { name: '爷爷不泡茶', file: 'grandpa-tea.png' },
@@ -25,7 +25,7 @@ const PARTNER_BRANDS: Brand[] = [
   { name: '新华网', file: 'xinhua.png' },
   { name: '科大讯飞', file: 'iflytek.png' },
   { name: '杭州亚运会', file: 'asiad.png' },
-  { name: '可画', file: 'canva.svg' },
+  { name: '可画', file: 'canva.png' },
 ]
 
 function BrandBar({ brands, speed = 30 }: { brands: Brand[]; speed?: number }) {
@@ -47,17 +47,14 @@ function BrandBar({ brands, speed = 30 }: { brands: Brand[]; speed?: number }) {
         {[...brands, ...brands].map((brand, i) => (
           <div
             key={`${brand.file}-${i}`}
-            className="flex-shrink-0 flex items-center"
+            className="flex-shrink-0 h-10 flex items-center"
           >
-            <div className="bg-white/[0.04] rounded-xl px-4 py-2.5 flex items-center justify-center ring-1 ring-white/[0.04] hover:bg-white/[0.07] transition-colors duration-400">
-              <img
-                src={`/brands/${brand.file}`}
-                alt={brand.name}
-                className="h-7 md:h-8 w-auto object-contain opacity-75 hover:opacity-100 transition-opacity duration-300"
-                style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.1))' }}
-                draggable={false}
-              />
-            </div>
+            <img
+              src={`/brands/${brand.file}`}
+              alt={brand.name}
+              className="h-full w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
+              draggable={false}
+            />
           </div>
         ))}
       </div>
@@ -84,16 +81,14 @@ export default function BrandShowcase() {
           <span className="text-[10px] tracking-[0.2em] uppercase text-surface-faint mb-5 block">
             Inhouse
           </span>
-          <div className="flex gap-6 md:gap-10 items-center">
+          <div className="flex gap-10 md:gap-16 items-center">
             {INHOUSE_BRANDS.map((brand) => (
-              <div key={brand.file} className="bg-white/[0.05] rounded-2xl px-6 py-4 flex items-center justify-center ring-1 ring-white/[0.06]">
-                <img
-                  src={`/brands/${brand.file}`}
-                  alt={brand.name}
-                  className="h-10 md:h-12 w-auto object-contain"
-                  style={{ filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.15))' }}
-                />
-              </div>
+              <img
+                key={brand.file}
+                src={`/brands/${brand.file}`}
+                alt={brand.name}
+                className="h-12 md:h-14 w-auto object-contain"
+              />
             ))}
           </div>
         </div>

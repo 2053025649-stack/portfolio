@@ -5,3 +5,5 @@ public/portfolio-images/
 public/content/
 .DS_Store
 *.tsbuildinfo
+.vercel
+.env*
