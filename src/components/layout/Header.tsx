@@ -28,7 +28,7 @@ export default function Header() {
       >
         <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16 flex items-center justify-between h-16 md:h-20">
           <Link href="/" className="text-lg md:text-xl font-display tracking-wide text-white hover:text-accent transition-colors duration-300">
-            Director
+            Portfolio
           </Link>
           <nav className="hidden md:flex items-center gap-1">
             {NAV_ITEMS.map((item) => {
