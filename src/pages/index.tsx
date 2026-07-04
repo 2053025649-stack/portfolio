@@ -128,7 +128,7 @@ export default function Home({ projects, config, awards }: HomeProps) {
                       {/* Partners — grouped with rhythm */}
                       <div>
                         <span className="text-[11px] tracking-[0.25em] uppercase text-surface-faint/60 mb-4 block">Partners</span>
-                        <div className="flex flex-wrap gap-x-8 gap-y-5 opacity-65">
+                        <div className="flex flex-wrap gap-x-8 gap-y-5">
                           {[
                             { file: 'polaroid.png', name: '宝利来' },
                             { file: 'zhejiang-health.svg', name: '浙江省卫健委' },
