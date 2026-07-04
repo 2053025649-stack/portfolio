@@ -131,7 +131,7 @@ export default function Home({ projects, config, awards }: HomeProps) {
                         <div className="flex flex-wrap gap-x-8 gap-y-5">
                           {[
                             { file: 'polaroid.png', name: '宝利来' },
-                            { file: 'zhejiang-health.svg', name: '浙江省卫健委' },
+                            { file: 'zhejiang-health.png', name: '浙江省卫健委' },
                             { file: 'hznu.png', name: '杭州师范大学' },
                             { file: 'chiwei.png', name: '赤尾' },
                             { file: 'psbc.png', name: '邮政储蓄银行' },

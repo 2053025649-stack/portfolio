@@ -14,7 +14,7 @@ const INHOUSE_BRANDS: Brand[] = [
 
 const PARTNER_BRANDS: Brand[] = [
   { name: '宝利来', file: 'polaroid.png' },
-  { name: '浙江省卫健委', file: 'zhejiang-health.svg' },
+  { name: '浙江省卫健委', file: 'zhejiang-health.png' },
   { name: '杭州师范大学', file: 'hznu.png' },
   { name: '赤尾', file: 'chiwei.png' },
   { name: '邮政储蓄银行', file: 'psbc.png' },
