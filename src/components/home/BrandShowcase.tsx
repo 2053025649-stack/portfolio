@@ -83,12 +83,13 @@ export default function BrandShowcase() {
           </span>
           <div className="flex gap-10 md:gap-16 items-center">
             {INHOUSE_BRANDS.map((brand) => (
-              <img
-                key={brand.file}
-                src={`/brands/${brand.file}`}
-                alt={brand.name}
-                className="h-12 md:h-14 w-auto object-contain"
-              />
+              <div key={brand.file} className="h-12 md:h-14 flex items-center">
+                <img
+                  src={`/brands/${brand.file}`}
+                  alt={brand.name}
+                  className="h-full w-auto object-contain"
+                />
+              </div>
             ))}
           </div>
         </div>

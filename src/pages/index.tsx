@@ -116,8 +116,12 @@ export default function Home({ projects, config, awards }: HomeProps) {
                       <div>
                         <span className="text-[11px] tracking-[0.25em] uppercase text-accent/70 mb-5 block">Inhouse</span>
                         <div className="flex gap-10 items-center">
-                          <img src="/brands/huawei.png" alt="华为" className="h-12 w-auto object-contain" />
-                          <img src="/brands/dji.svg" alt="大疆创新" className="h-12 w-auto object-contain" />
+                          <div className="h-12 flex items-center">
+                            <img src="/brands/huawei.png" alt="华为" className="h-full w-auto object-contain" />
+                          </div>
+                          <div className="h-12 flex items-center">
+                            <img src="/brands/dji.svg" alt="大疆创新" className="h-full w-auto object-contain" />
+                          </div>
                         </div>
                       </div>
 
@@ -140,7 +144,9 @@ export default function Home({ projects, config, awards }: HomeProps) {
                             { file: 'asiad.png', name: '杭州亚运会' },
                             { file: 'canva.png', name: '可画' },
                           ].map((b) => (
-                            <img key={b.file} src={`/brands/${b.file}`} alt={b.name} className="h-6 lg:h-7 w-auto object-contain" />
+                            <div key={b.file} className="h-6 lg:h-7 flex items-center">
+                              <img src={`/brands/${b.file}`} alt={b.name} className="h-full w-auto object-contain" />
+                            </div>
                           ))}
                         </div>
                       </div>
