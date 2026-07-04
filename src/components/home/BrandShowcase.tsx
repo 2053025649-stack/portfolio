@@ -53,7 +53,7 @@ function BrandBar({ brands, speed = 30 }: { brands: Brand[]; speed?: number }) {
             <img
               src={`/brands/${brand.file}`}
               alt={brand.name}
-              className="w-full h-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
+              className="w-full h-auto object-contain"
               draggable={false}
             />
           </div>
