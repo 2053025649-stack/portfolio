@@ -115,12 +115,12 @@ export default function Home({ projects, config, awards }: HomeProps) {
                       {/* Inhouse — large, prominent */}
                       <div>
                         <span className="text-[11px] tracking-[0.25em] uppercase text-accent/70 mb-5 block">Inhouse</span>
-                        <div className="flex gap-10 items-center">
-                          <div className="h-12 flex items-center">
-                            <img src="/brands/huawei.png" alt="华为" className="h-full w-auto object-contain" />
+                        <div className="flex gap-12 items-center">
+                          <div className="w-36 flex items-center justify-center">
+                            <img src="/brands/huawei.png" alt="华为" className="w-full h-auto object-contain" />
                           </div>
-                          <div className="h-12 flex items-center">
-                            <img src="/brands/dji.svg" alt="大疆创新" className="h-full w-auto object-contain" />
+                          <div className="w-36 flex items-center justify-center">
+                            <img src="/brands/dji.svg" alt="大疆创新" className="w-full h-auto object-contain" />
                           </div>
                         </div>
                       </div>
@@ -128,7 +128,7 @@ export default function Home({ projects, config, awards }: HomeProps) {
                       {/* Partners — grouped with rhythm */}
                       <div>
                         <span className="text-[11px] tracking-[0.25em] uppercase text-surface-faint/60 mb-4 block">Partners</span>
-                        <div className="flex flex-wrap gap-x-7 gap-y-4 opacity-65">
+                        <div className="flex flex-wrap gap-x-8 gap-y-5 opacity-65">
                           {[
                             { file: 'polaroid.png', name: '宝利来' },
                             { file: 'zhejiang-health.svg', name: '浙江省卫健委' },
@@ -136,16 +136,17 @@ export default function Home({ projects, config, awards }: HomeProps) {
                             { file: 'chiwei.png', name: '赤尾' },
                             { file: 'psbc.png', name: '邮政储蓄银行' },
                             { file: 'grandpa-tea.png', name: '爷爷不泡茶' },
-                            { file: 'popmart.svg', name: '泡泡玛特' },
+                            { file: 'popmart.png', name: '泡泡玛特' },
                             { file: 'people-daily.png', name: '人民网' },
                             { file: 'cctv.png', name: '央视网' },
                             { file: 'xinhua.png', name: '新华网' },
                             { file: 'iflytek.png', name: '科大讯飞' },
                             { file: 'asiad.png', name: '杭州亚运会' },
                             { file: 'canva.png', name: '可画' },
+                            { file: 'zhchuan.png', name: '浙江传媒学院' },
                           ].map((b) => (
-                            <div key={b.file} className="h-6 lg:h-7 flex items-center">
-                              <img src={`/brands/${b.file}`} alt={b.name} className="h-full w-auto object-contain" />
+                            <div key={b.file} className="w-20 flex items-center justify-center">
+                              <img src={`/brands/${b.file}`} alt={b.name} className="w-full h-auto object-contain" />
                             </div>
                           ))}
                         </div>
