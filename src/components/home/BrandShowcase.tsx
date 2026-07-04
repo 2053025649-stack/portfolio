@@ -82,15 +82,12 @@ export default function BrandShowcase() {
             Inhouse
           </span>
           <div className="flex gap-12 md:gap-16 items-center">
-            {INHOUSE_BRANDS.map((brand) => (
-              <div key={brand.file} className="w-40 md:w-48 flex items-center justify-center">
-                <img
-                  src={`/brands/${brand.file}`}
-                  alt={brand.name}
-                  className="w-full h-auto object-contain"
-                />
-              </div>
-            ))}
+            <div className="w-40 md:w-48 flex items-center justify-center">
+              <img src="/brands/huawei.png" alt="华为" className="w-full h-auto object-contain" />
+            </div>
+            <div className="w-24 md:w-28 flex items-center justify-center">
+              <img src="/brands/dji.png" alt="大疆创新" className="w-full h-auto object-contain" />
+            </div>
           </div>
         </div>
 
