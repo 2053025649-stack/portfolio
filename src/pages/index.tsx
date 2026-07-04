@@ -29,7 +29,7 @@ export default function Home({ projects, config, awards }: HomeProps) {
     ? raw
     : null
 
-  const [activePanel, setActivePanel] = useState<'experience' | 'awards' | null>('experience')
+  const [activePanel, setActivePanel] = useState<'experience' | 'awards' | null>(null)
   const featured = useMemo(() => projects.find((p) => p.featured) || null, [projects])
 
   const togglePanel = (panel: 'experience' | 'awards') => {
