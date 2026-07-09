@@ -12,12 +12,13 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&display=swap&subset=chinese-simplified,latin"
           rel="stylesheet"
         />
+        {/* Almarai (global default) + Instrument Serif (italic accents) */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Instrument+Serif:ital@1&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <body>
-        {/* Skip-to-content for keyboard users */}
-        <a href="#main-content" className="skip-link">
-          跳到内容
-        </a>
         <Main />
         <NextScript />
       </body>

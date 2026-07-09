@@ -6,13 +6,14 @@ import SEO, { SEOProps } from './SEO'
 interface LayoutProps {
   children: ReactNode
   seo?: SEOProps
+  hideHeader?: boolean
 }
 
-export default function Layout({ children, seo }: LayoutProps) {
+export default function Layout({ children, seo, hideHeader }: LayoutProps) {
   return (
     <div className="min-h-screen bg-dark-800 text-surface flex flex-col">
       <SEO {...seo} />
-      <Header />
+      {!hideHeader && <Header />}
       <main id="main-content" className="flex-1" tabIndex={-1}>{children}</main>
       <Footer />
     </div>

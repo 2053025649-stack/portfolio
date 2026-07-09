@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        primary: '#DEDBC8',   // warm cream — primary text and accents (Prisma)
         dark: {
           950: '#050508',  // deepest — slight warm-blue tint, never pure black
           900: '#0a0a0e',  // near-black with warmth
@@ -30,6 +31,7 @@ module.exports = {
       fontFamily: {
         sans: ['"PingFang SC"', '"Noto Sans SC"', '"Microsoft YaHei"', 'system-ui', 'sans-serif'],
         display: ['"Noto Serif SC"', '"Source Han Serif SC"', 'Georgia', 'serif'],
+        serif: ['"Instrument Serif"', 'serif'],
       },
       animation: {
         'fade-up': 'fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
